@@ -12,6 +12,10 @@ function main() {
 		isOrg = false;
 		name = splited[1];
 	}
+	if (url.indexOf("light.html") < 0) {
+		IsTest = false;
+		alert("Not test");
+	}
 	var org = getOrganizationOrProfileInfo(name);
 	var repos = getOrganizationOrProfileRepos(name);
 }
