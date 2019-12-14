@@ -6,7 +6,7 @@ main()
 function main() {
 	var isOrg = true;
 	var url = window.location.href ; //"https://quickutils.github.io/";//
-	var splited = url.replace("https://", '').replace(/\\|\//g, '').split(".github.io");
+	var splited = url.replace("https://", '').replace(/\\|\//g, '').split("?")[0].split(".github.io");
 	var name = splited[0].replace(".github.io/", '');
 	if (splited.length > 1 && splited[1].trim() != "") {
 		isOrg = false;
