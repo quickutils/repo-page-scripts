@@ -14,7 +14,6 @@ function main() {
 	}
 	if (url.indexOf("light.html") < 0) {
 		IsTest = false;
-		alert("Not test");
 	}
 	var org = getOrganizationOrProfileInfo(name);
 	var repos = getOrganizationOrProfileRepos(name);
