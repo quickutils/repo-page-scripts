@@ -1,0 +1,88 @@
+* {
+  transition: .33s ease all;
+  box-sizing: border-box;
+}
+body {
+	margin: 0;
+	padding: 0;
+}
+html {
+  font-family: 'Questrial', sans-serif;
+  box-sizing: border-box;
+}
+
+.org-title {
+	margin: 1%;
+	text-align: center;
+}
+
+.org-title #org-title-image {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.org-title #org-title-title {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.circular_image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: white;
+  display:inline-block;
+  vertical-align:middle;
+}
+
+.circular_image img{
+  width:100%;
+}
+
+.org-main {
+	margin: 1%;
+	padding: 1%;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+.org-main .org-main-repo {
+	margin: 10px;
+	background: white;
+	border:1px solid #ebeae8;
+	padding: 15px;
+	border-radius: 2%;
+	width: 370px;
+	height: 180px;
+	text-decoration: none;
+}
+
+.org-main .org-main-repo stat {
+	margin-left:20px;
+}
+
+.org-main .org-main-repo i {
+	color: #636466;
+	font-size: 15px;
+}
+
+.org-main .org-main-repo a {
+	text-decoration: none;
+	color: #3d6cd9;
+}
+
+.org-main .org-main-repo a:hover {
+	text-decoration: underline;
+}
+
+.org-main .org-main-repo p {
+	font-size: 15px;
+	color: grey;
+	height:90px; 
+	max-height:90px; 
+	word-wrap:break-word;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
