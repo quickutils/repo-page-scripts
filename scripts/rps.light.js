@@ -5,7 +5,7 @@ var IsTest = true;
 main()
 function main() {
 	var isOrg = true;
-	var url = "https://quickutils.github.io/";//window.location ;
+	var url = window.location ; //"https://quickutils.github.io/";//
 	var splited = url.replace("https://", '').replace(/\\|\//g, '').split(".github.io")
 	var name = splited[0].replace(".github.io/", '');
 	if (splited.length > 1 && splited[1].trim() != "") {
