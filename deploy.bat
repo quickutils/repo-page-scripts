@@ -3,6 +3,7 @@ setlocal enabledelayedexpansion
 
 SET VERSION=%1
 SET COMMIT_MESSAGE=%2
+:latest
 if "!VERSION!"=="" (
 	SET VERSION=latest
 )
@@ -19,6 +20,11 @@ IF NOT EXIST "!STYLES_DIR!" ( MKDIR "!STYLES_DIR!")
 
 robocopy %~dp0/scripts !SCRIPTS_DIR! /MIR
 robocopy %~dp0/styles !STYLES_DIR! /MIR
+
+if not "!VERSION!"=="latest" (
+	SET VERSION=latest
+	goto:latest
+)
 
 echo pushimg deploy: !COMMIT_MESSAGE!
 git add .
