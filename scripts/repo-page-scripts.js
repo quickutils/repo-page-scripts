@@ -73,7 +73,7 @@ function setTitle(org) {
 	document.title = org.name ;
 	var titleDivContent = `
 		<br/><img id="org-title-image" class="circular_image" alt="${org.description}" src="${org.avatar_url}">
-		<br/><br/><a href="https://github.com/Thecarisma"><span id="org-title-title" >${org.name}</span></a>
+		<br/><br/><a href="${org.html_url}"><span id="org-title-title" >${org.name}</span></a>
 		<p>${org.description}</p>
 	`;
 	document.getElementById("org-title").innerHTML= titleDivContent; 
