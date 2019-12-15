@@ -127,11 +127,9 @@ a:hover {
 .tabcontent {
 	display: none;
 	height: 100%;
-	padding: 20px;
-	margin: 20px;
 }
 
 .tabcontent .org-main {
-	margin: 20px !important;
-	padding: 20px !important;
+	margin: 10px !important;
+	padding: 10px !important;
 }
