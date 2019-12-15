@@ -3437,7 +3437,7 @@ function getProfileReposTest() {
 	];
 }
 
-function getUserOrgs() {
+function getTestUserOrgs() {
 	return [
 	  {
 		"login": "theratioproject",
@@ -3496,6 +3496,298 @@ function getUserOrgs() {
 		"description": null
 	  }
 	];
+}
+
+function getTestUserGists() {
+	return [
+	  {
+		"url": "https://api.github.com/gists/17a0b874805b0f4cebc6380305e2653d",
+		"forks_url": "https://api.github.com/gists/17a0b874805b0f4cebc6380305e2653d/forks",
+		"commits_url": "https://api.github.com/gists/17a0b874805b0f4cebc6380305e2653d/commits",
+		"id": "17a0b874805b0f4cebc6380305e2653d",
+		"node_id": "MDQ6R2lzdDE3YTBiODc0ODA1YjBmNGNlYmM2MzgwMzA1ZTI2NTNk",
+		"git_pull_url": "https://gist.github.com/17a0b874805b0f4cebc6380305e2653d.git",
+		"git_push_url": "https://gist.github.com/17a0b874805b0f4cebc6380305e2653d.git",
+		"html_url": "https://gist.github.com/17a0b874805b0f4cebc6380305e2653d",
+		"files": {
+		  "playground.rs": {
+			"filename": "playground.rs",
+			"type": "application/rls-services+xml",
+			"language": "Rust",
+			"raw_url": "https://gist.githubusercontent.com/Thecarisma/17a0b874805b0f4cebc6380305e2653d/raw/1d7946959c251d6819bc4bd1e96de2b60d7640d6/playground.rs",
+			"size": 337
+		  }
+		},
+		"public": true,
+		"created_at": "2019-12-15T21:47:11Z",
+		"updated_at": "2019-12-15T21:47:11Z",
+		"description": "Code shared from the Rust Playground",
+		"comments": 0,
+		"user": null,
+		"comments_url": "https://api.github.com/gists/17a0b874805b0f4cebc6380305e2653d/comments",
+		"owner": {
+		  "login": "Thecarisma",
+		  "id": 14879387,
+		  "node_id": "MDQ6VXNlcjE0ODc5Mzg3",
+		  "avatar_url": "https://avatars3.githubusercontent.com/u/14879387?v=4",
+		  "gravatar_id": "",
+		  "url": "https://api.github.com/users/Thecarisma",
+		  "html_url": "https://github.com/Thecarisma",
+		  "followers_url": "https://api.github.com/users/Thecarisma/followers",
+		  "following_url": "https://api.github.com/users/Thecarisma/following{/other_user}",
+		  "gists_url": "https://api.github.com/users/Thecarisma/gists{/gist_id}",
+		  "starred_url": "https://api.github.com/users/Thecarisma/starred{/owner}{/repo}",
+		  "subscriptions_url": "https://api.github.com/users/Thecarisma/subscriptions",
+		  "organizations_url": "https://api.github.com/users/Thecarisma/orgs",
+		  "repos_url": "https://api.github.com/users/Thecarisma/repos",
+		  "events_url": "https://api.github.com/users/Thecarisma/events{/privacy}",
+		  "received_events_url": "https://api.github.com/users/Thecarisma/received_events",
+		  "type": "User",
+		  "site_admin": false
+		},
+		"truncated": false
+	  }
+	];
+}
+
+function getTestUserGistContent() {
+	return `/* 
+ *  ptarget.h
+ *
+ *  Coded by Stefan Vogt, revised Feb 18, 2011.
+ *  Released under the FreeBSD license.
+ *  http://www.byteproject.net
+ *
+ *  header for compiler and OS detection
+ *
+ */
+
+#if !defined(_PTARGET_H_)
+	#define _PTARGET_H_
+#endif
+
+/* compilers */
+#if defined(__GNUC__)
+	#if defined(__llvm__)
+		#if defined(__clang__)
+			#define COMPILER "LLVM Clang (GNU C %d.%d.%d)"
+		#elif defined(__APPLE_CC__)
+			#define COMPILER "LLVM Apple GCC %d.%d.%d"
+		#else
+			#define COMPILER "LLVM GCC %d.%d.%d"
+		#endif
+	#elif defined(__APPLE_CC__)
+		#define COMPILER "Apple GCC %d.%d.%d"
+	#elif defined(__MINGW32__) || defined(__MINGW64__)
+		#define COMPILER "MinGW GCC %d.%d.%d"
+	#else
+		#define COMPILER "GCC %d.%d.%d"
+	#endif
+	#define COMP_VERSION __GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__
+#endif
+
+#if defined(__SUNPRO_C) || defined(__SUNPRO_CC)
+	#if defined(__SUNPRO_C)
+		#define COMPILER "Sun C compiler %x"
+		#define COMP_VERSION __SUNPRO_C
+	#endif
+	#if defined(__SUNPRO_CC)
+		#define COMPILER "Sun C++ compiler %x"
+		#define COMP_VERSION __SUNPRO_CC
+	#endif
+#endif
+
+#if defined(__INTEL_COMPILER)
+	#define COMPILER "Intel compiler %d.%d"
+	#define COMP_VERSION __INTEL_COMPILER / 100, (__INTEL_COMPILER % 100) / 10
+#endif
+
+#if defined(_MSC_VER)
+	#define COMPILER "Microsoft C / Visual C++ compiler %d.%d"
+	#define COMP_VERSION _MSC_VER / 100, _MSC_VER % 100
+#endif
+
+#if defined(__WATCOMC__)
+	#define COMPILER "(Open) Watcom C / C++ compiler %d.%d"
+	#define COMP_VERSION __WATCOMC__ / 100, __WATCOMC__ % 100
+#endif
+
+#if defined(__DMC__)
+	#define COMPILER "Digital Mars C / C++ compiler %x"
+	#define	COMP_VERSION __DMC__
+#endif
+
+#if defined(__PCC__)
+	#define COMPILER "Portable C compiler"
+#endif
+
+#if defined(__HP_cc) || defined(__HP_aCC)
+	#if defined(__HP_cc)
+		#define COMPILER "HP ANSI C compiler"
+	#endif
+	#if defined(__HP_aCC)
+		#define COMPILER "HP aC++ compiler"
+	#endif
+#endif
+
+#if defined(__BORLANDC__)
+	#define COMPILER "Borland / Embarcadero C++ compiler"
+#endif
+
+#if defined(KENC) || defined(KENCC)
+	#define COMPILER "Plan 9 compiler suite"
+#endif
+
+#if defined(__sgi) || defined(sgi)
+	#define COMPILER "MIPSpro compiler"
+#endif
+
+#if defined(__MWERKS__)
+	#define COMPILER "Metrowerks CodeWarrior"
+#endif
+
+#if defined(__TURBOC__) && !defined(__BORLANDC__)
+	#define COMPILER "Borland Turbo C"
+#endif
+
+#if defined(__QC)
+	#define COMPILER "Microsoft Quick C"
+#endif
+
+#if defined(__ZTC__) && !defined (__SC__) && !defined(__DMC__)
+	#define COMPILER "Zortech C / C++ compiler"
+#endif
+
+#if defined(__SC__) && !defined(__DMC__)
+	#define COMPILER "Symantec C / C++ compiler"
+#endif
+
+/* operating systems */
+#if defined(__APPLE__) && defined(__MACH__)
+	#define OPERATINGSYSTEM "Mac OS X"
+#endif
+
+#if defined(__FreeBSD__)
+	#define OPERATINGSYSTEM "FreeBSD"
+#endif
+
+#if defined(__NetBSD__)
+	#define OPERATINGSYSTEM "NetBSD"
+#endif
+
+#if defined(__OpenBSD__)
+	#define OPERATINGSYSTEM "OpenBSD"
+#endif
+
+#if defined(__DragonFly__)
+	#define OPERATINGSYSTEM "DragonFly BSD"
+#endif
+
+#if defined(__linux) || defined(linux)
+	#define OPERATINGSYSTEM "Linux"
+#endif
+
+#if defined(sun) || defined(__sun)
+	#if defined(__SVR4) || defined(__svr4__)
+		#define OPERATINGSYSTEM "Solaris"
+	#else
+		#define	OPERATINGSYSTEM "SunOS"
+	#endif
+#endif
+
+#if defined(__HAIKU__)
+	#define OPERATINGSYSTEM "Haiku"
+#endif
+
+#if defined(__WIN32__) || defined(__WINDOWS__) || defined(_MSC_VER) || \
+defined (_WIN32) || defined(_WIN64) || defined(_WINDOWS)
+	#define OPERATINGSYSTEM "Microsoft(R) Windows(TM)"
+#endif
+
+#if defined(__REACTOS__)
+	#define OPERATINGSYSTEM "ReactOS"
+#endif
+
+#if defined(__GNU__)
+	#define OPERATINGSYSTEM "GNU Hurd"
+#endif
+
+#if defined(_AIX)
+	#define OPERATINGSYSTEM "AIX"
+#endif
+
+#if defined(__hpux) || defined(hpux)
+	#define OPERATINGSYSTEM "HP-UX"
+#endif
+
+#if defined(__minix)
+	#define OPERATINGSYSTEM "MINIX"
+#endif
+
+#if defined(PLAN9)
+	#define OPERATINGSYSTEM "Plan 9"
+#endif
+
+#if defined(__QNXNTO__)
+	#define OPERATINGSYSTEM "QNX Neutrino"
+#endif
+
+#if defined(__QNX__)
+	#define OPERATINGSYSTEM "QNX"
+#endif
+
+#if defined(_MIPS_ISA) || defined(_SGI_SOURCE)
+	#define OPERATINGSYSTEM "IRIX"
+#endif
+
+#if defined(__BEOS__)
+	#define OPERATINGSYSTEM "BeOS"
+#endif
+
+#if defined(UNIXV)
+	#define OPERATINGSYSTEM "UNIX - AT&T System V"
+#endif
+
+#if defined(UNIX7)
+	#define OPERATINGSYSTEM "UNIX - version 7"
+#endif
+
+#if defined(NEXTSTEP)
+	#define OPERATINGSYSTEM "NeXTStep"
+#endif
+
+#if defined(OPENSTEP)
+	#define OPERATINGSYSTEM "OPENSTEP"
+#endif
+
+#if defined(macintosh)
+	#define OPERATINGSYSTEM "Mac OS Classic"
+#endif
+
+#if defined(RHAPSODY) && !defined(MAC_OS_X_SERVER)
+	#define OPERATINGSYSTEM "Rhapsody (pre Mac OS X)"
+#endif
+
+#if defined(__OS2__) || defined(OS2) || defined(_OS2)
+	#define OPERATINGSYSTEM "OS2"
+#endif
+
+#if defined(AMIGA) || defined(__amigaos__)
+	#define OPERATINGSYSTEM "AmigaOS"
+#endif
+
+#if defined(__MSDOS__) || defined(__DOS__) || defined(FREEDOS)
+	#define OPERATINGSYSTEM "MS-DOS or FreeDOS"
+#endif
+
+/* recognition failure */
+#if !defined(COMPILER)
+	#define COMPILER "unknown compiler"
+#endif
+
+#if !defined(OPERATINGSYSTEM)
+	#define OPERATINGSYSTEM "unknown operating system"
+#endif`;
 }
 
 

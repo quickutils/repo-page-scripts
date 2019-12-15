@@ -124,7 +124,7 @@ function setProfileBody(org, repos) {
 	document.body.innerHTML += `<div class="container" id="container">
 		<button class="tablink" onclick="openRepositories(this, '${org.repos_url}')" id="defaultOpen">Repositories</button>
 		<button class="tablink" onclick="openOrganization(this, '${org.organizations_url}')" >Organizations</button>
-		<button class="tablink" onclick="openGists(this, '${org.gists_url}')">Gists</button>
+		<button class="tablink" onclick="openGists(this, '${org.gists_url.split('{')[0]}')">Gists</button>
 		<button class="tablink" onclick="openAllRepos(this, '${org.repos_url}', '${org.organizations_url}')">All Repos</button>
 		
 		<div id="Repositories" class="tabcontent">
@@ -214,6 +214,23 @@ function getJSONP(url, success, failed) {
 	xmlhttp.send(null);
 }
 
+function getStringP(url, success, failed) {
+    var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open('GET', url, true);
+	xmlhttp.setRequestHeader("Content-Type", "application/json");
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4) {
+			if(xmlhttp.status == 200) {
+				success(xmlhttp.responseText);
+			} else if(xmlhttp.status == 404){
+				var obj = (xmlhttp.responseText ? xmlhttp.responseText : '' );
+				failed(obj);
+			}
+		}
+	};
+	xmlhttp.send(null);
+}
+
 function openRepositories(elmnt, apiEndpoint) {
 	openPage('Repositories', elmnt);
 }
@@ -223,7 +240,7 @@ function openOrganization(elmnt, apiEndpoint) {
 	if (LoadedOrgs === false) {
 		if (TestType !== 0) {
 			if (TestType === 2) {
-				renderUserOrganizations(getUserOrgs());
+				renderUserOrganizations(getTestUserOrgs());
 			}
 			
 		} else {
@@ -255,8 +272,49 @@ function renderUserOrganizations(orgs) {
 function openGists(elmnt, apiEndpoint) {
 	openPage('Gists', elmnt);
 	if (LoadedGists === false) {
-		
+		if (TestType !== 0) {
+			if (TestType === 2) {
+				renderUserGist(getTestUserGists());
+			}
+			
+		} else {
+			getJSONP(apiEndpoint, function(data){
+				renderUserGist(data);
+			}, function(err){});  
+		}
 	}
+}
+
+function renderUserGist(gists) {
+	var div = document.getElementById('org-main-gists');
+	for (var gist of gists) {
+		var fileObj = gist.files[Object.keys(gist.files)[0]];
+		var repoHTML = `
+			<div class="org-main-gist">
+				<a class="title" href="${gist.html_url}">${fileObj.filename}</a>`
+				
+				+ (fileObj.language ? `<i class="fa fa-circle color-${fileObj.language.replace(' ', '-').toLowerCase()}"></i> ${fileObj.language}` : ``) +
+				
+				`<a href="${gist.html_url}"><p>`
+				
+				+ (gist.description ? `${gist.description}` : ``) +
+				
+				`</p></a>
+				<textarea id="gist-${fileObj.filename}" readonly></textarea>
+			</div>`;
+		div.innerHTML += (repoHTML);
+		if (TestType !== 0) {
+			if (TestType === 2) {
+				document.getElementById(`gist-${fileObj.filename}`).innerHTML = getTestUserGistContent();
+			}
+			
+		} else {
+			getStringP(fileObj.raw_url, function(data){
+				document.getElementById(`gist-${fileObj.filename}`).innerHTML = data;
+			}, function(err){});  
+		}
+	}
+	LoadedGists = true;
 }
 
 function openAllRepos(elmnt, reposEndpoint, orgsEndpoint) {
