@@ -70,7 +70,7 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 function setOrganizationOrProfileInfo(org) {
 	setMeta(org);
 	setTitle(org);
-	getOrganizationOrProfileRepos(name, (org.type === "User"));
+	getOrganizationOrProfileRepos(org.login, (org.type === "User"));
 }
 
 function getOrganizationOrProfileRepos(orgName, isUser) {
