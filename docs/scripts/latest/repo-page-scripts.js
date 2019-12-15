@@ -214,9 +214,10 @@ function getJSONP(url, success, failed) {
 	xmlhttp.send(null);
 }
 
-function getStringP(url, success, failed) {
+function getStringP(url, contentType, success, failed) {
     var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open('GET', url, true);
+	xmlhttp.setRequestHeader("Content-Type", contentType);
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4) {
 			if(xmlhttp.status == 200) {
@@ -308,7 +309,7 @@ function renderUserGist(gists) {
 			}
 			
 		} else {
-			getStringP(fileObj.raw_url, function(data){
+			getStringP(fileObj.raw_url, fileObj.type, function(data){
 				document.getElementById(`gist-${fileObj.filename}`).innerHTML = data;
 			}, function(err){});  
 		}
