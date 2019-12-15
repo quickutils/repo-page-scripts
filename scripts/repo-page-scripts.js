@@ -42,6 +42,7 @@ function main() {
 }
 
 function getOrganizationProfileInfo(apiEndpoint, name) {
+	document.body.innerHTML += `<div class="org-title" id="org-title"></div>`; 
 	if (TestType !== 0) {
 		if (TestType === 1) {
 			setOrganizationOrProfileInfo(getOrginfoTest());
@@ -172,15 +173,15 @@ function setMeta(org) {
 
 function setTitle(org) {
 	document.title = org.name ;
-	var titleDivContent = `<div class="org-title" id="org-title">
+	var titleDivContent = `
 		<br/><img id="org-title-image" class="circular_image" alt="${org.description}" src="${org.avatar_url}">
 		<br/><br/><a href="${org.html_url}"><span id="org-title-title" >${org.name}</span></a>
 		<p>`
 				
 		+ (org.description ? `${org.description}` : ``) +
 				
-		`</p></div>`;
-	document.body.innerHTML += titleDivContent; 
+		`</p>`;
+	document.getElementById('org-title').innerHTML += titleDivContent; 
 }
 
 function setIcon(imageLink) {
