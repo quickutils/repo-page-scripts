@@ -51,6 +51,12 @@ a:hover {
 	vertical-align:middle;
 }
 
+.image {
+	width: 150px;
+	height: 150px;
+	margin-bottom: 5px;
+}
+
 .circular_image img{
 	width:100%;
 }
@@ -104,6 +110,38 @@ a:hover {
 	word-wrap:break-word;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+.org-main .org-main-org {
+	margin: 10px;
+	background: white;
+	border:1px solid #ebeae8;
+	padding: 15px;
+	border-radius: 2%;
+	width: 370px;
+	max-width: 370px;
+	height: 300px;
+	text-decoration: none;
+	flex: 1 1 auto;
+	text-align: center;
+}
+
+.org-main .org-main-org .title {
+	top:35px !important;
+	margin-top:35px !important;
+	font-size:20px;
+}
+
+.org-main .org-main-org a {
+	text-decoration: none;
+}
+
+.org-main .org-main-org a:hover {
+	text-decoration: underline;
+}
+
+.org-main .org-main-org p {
+	color: black;
 }
 
 * {box-sizing: border-box}

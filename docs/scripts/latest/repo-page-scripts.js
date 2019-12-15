@@ -223,16 +223,33 @@ function openOrganization(elmnt, apiEndpoint) {
 	if (LoadedOrgs === false) {
 		if (TestType !== 0) {
 			if (TestType === 2) {
-				var data = getUserOrgs();
-				console.log(data);
+				renderUserOrganizations(getUserOrgs());
 			}
 			
 		} else {
 			getJSONP(apiEndpoint, function(data){
-				console.log(data);
+				renderUserOrganizations(data);
 			}, function(err){});  
 		}
 	}
+}
+
+function renderUserOrganizations(orgs) {
+	var div = document.getElementById('org-main-orgs');
+	for (var org of orgs) {
+		var repoHTML = `
+			<div class="org-main-org">
+				<img id="org-title-image" class="image" alt="${org.login}" src="${org.avatar_url}">
+				<br/><a class="title" href="https://${org.login}.github.io">keyvaluedb</a>
+				<a href="https://${org.login}.github.io"><p>`
+				
+				+ (org.description ? `${org.description}` : ``) +
+				
+				`</p></a>
+		`;
+		div.innerHTML += (repoHTML);
+	}
+	LoadedOrgs = true;
 }
 
 function openGists(elmnt, apiEndpoint) {
