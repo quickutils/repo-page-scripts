@@ -14,50 +14,78 @@
 </head>
 <body>
 	<div class="org-title" id="org-title">
-		<!-- <br/><img id="org-title-image" class="circular_image" alt="ORGANIZATION-DESCRIPTION" src="https://www.gravatar.com/avatar/fd1afd9efe1b1a4c28c8bfbc4b60200c"> -->
-		<!-- <br/><br/><a href="https://github.com/Thecarisma"><span id="org-title-title">{{ORGANIZATION-NAME}}</span></a> -->
-		<!-- <p>Portable scripts and utilities to get a single task done efficiently and quickly</p> -->
+		<br/><img id="org-title-image" class="circular_image" alt="ORGANIZATION-DESCRIPTION" src="https://www.gravatar.com/avatar/fd1afd9efe1b1a4c28c8bfbc4b60200c">
+		<br/><br/><a href="https://github.com/Thecarisma"><span id="org-title-title">{{ORGANIZATION-NAME}}</span></a>
+		<p>Portable scripts and utilities to get a single task done efficiently and quickly</p>
 	</div>
-	<div class="org-main" id="org-main">
-		<!-- <div class="org-main-repo"> -->
-			<!-- <i class="fa fa-book"></i> -->
-			<!-- <a href="https://github.com/Thecarisma"><span style="margin-left:5px;">repo-page-scripts</span></a> -->
-			<!-- <p> -->
-			<!-- Create your repository and organization web page using a single script. Just drop and deploy. -->
-			<!-- </p> -->
-			<!-- <i class="fa fa-circle"></i> 1 -->
-			<!-- <stat> <i class="fa fa-star"></i> 1</stat> -->
-			<!-- <stat> <i class="fa fa-code-fork"></i> 1</stat> -->
-		<!-- </div> -->
-		<div id="Home" class="tabcontent">
-	  <h3>Home</h3>
-	  <p>Home is where the heart is..</p>
+	<div class="container" id="container">
+		<button class="tablink" onclick="openPage('Repositories', this)" id="defaultOpen">Repositories</button>
+		<button class="tablink" onclick="openPage('Organizations', this)" >Organizations</button>
+		<button class="tablink" onclick="openPage('Gists', this)">Gists</button>
+		<button class="tablink" onclick="openPage('All-Repos', this)">All Repos</button>
 	</div>
-
-	<div id="News" class="tabcontent">
-	  <h3>News</h3>
-	  <p>Some news this fine day!</p> 
+	<div id="Repositories" class="tabcontent">
+		<div class="org-main" id="org-main">
+			<div class="org-main-repo">
+				<i class="fa fa-book"></i>
+				<a href="https://github.com/Thecarisma"><span style="margin-left:5px;">repo-page-scripts</span></a>
+				<p>
+				Create your repository and organization web page using a single script. Just drop and deploy.
+				</p>
+				<i class="fa fa-circle"></i> 1
+				<stat> <i class="fa fa-star"></i> 1</stat>
+				<stat> <i class="fa fa-code-fork"></i> 1</stat>
+			</div>
+		</div>
 	</div>
-
-	<div id="Contact" class="tabcontent">
-	  <h3>Contact</h3>
-	  <p>Get in touch, or swing by for a cup of coffee.</p>
+	<div id="Organizations" class="tabcontent">
+		<div class="org-main" id="org-main">
+			<div class="org-main-repo">
+				<i class="fa fa-book"></i>
+				<a href="https://github.com/Thecarisma"><span style="margin-left:5px;">repo-page-scripts</span></a>
+				<p>
+				Create your repository and organization web page using a single script. Just drop and deploy.
+				</p>
+				<i class="fa fa-circle"></i> 1
+				<stat> <i class="fa fa-star"></i> 1</stat>
+				<stat> <i class="fa fa-code-fork"></i> 1</stat>
+			</div>
+		</div>
 	</div>
-
-	<div id="About" class="tabcontent">
-	  <h3>About</h3>
-	  <p>Who we are and what we do.</p>
+	<div id="Gists" class="tabcontent">
+		<div class="org-main" id="org-main">
+			<div class="org-main-repo">
+				<i class="fa fa-book"></i>
+				<a href="https://github.com/Thecarisma"><span style="margin-left:5px;">repo-page-scripts</span></a>
+				<p>
+				Create your repository and organization web page using a single script. Just drop and deploy.
+				</p>
+				<i class="fa fa-circle"></i> 1
+				<stat> <i class="fa fa-star"></i> 1</stat>
+				<stat> <i class="fa fa-code-fork"></i> 1</stat>
+			</div>
+		</div>
 	</div>
+	<div id="All-Repos" class="tabcontent">
+		<div class="org-main" id="org-main">
+			<div class="org-main-repo">
+				<i class="fa fa-book"></i>
+				<a href="https://github.com/Thecarisma"><span style="margin-left:5px;">repo-page-scripts</span></a>
+				<p>
+				Create your repository and organization web page using a single script. Just drop and deploy.
+				</p>
+				<i class="fa fa-circle"></i> 1
+				<stat> <i class="fa fa-star"></i> 1</stat>
+				<stat> <i class="fa fa-code-fork"></i> 1</stat>
+			</div>
+		</div>
 	</div>
-	<button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
-	<button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">News</button>
-	<button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
-	<button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
 
 	
 	<script>
 	var TestType = 2;
 	</script>
+	<script src="../../scripts/repo-page-scripts-dummy-datas.js"></script>
 	<script src="../../scripts/repo-page-scripts.js"></script>
 </body>
 </html>
