@@ -104,6 +104,7 @@ function setOrganizationOrProfileRepos(repos) {
 }
 
 function setMeta(org) {
+	setIcon(org.avatar_url);
 	if (document.querySelector('meta[name="description"]') !== null) document.querySelector('meta[name="description"]').setAttribute("content", org.description);
 	if (document.querySelector('meta[property="og:title"]') !== null) document.querySelector('meta[property="og:title"]').setAttribute("content", org.name);
 	if (document.querySelector('meta[property="og:image"]') !== null) document.querySelector('meta[property="og:image"]').setAttribute("content", org.avatar_url);
@@ -121,6 +122,14 @@ function setTitle(org) {
 				
 		`</p></div>`;
 	document.body.innerHTML += titleDivContent; 
+}
+
+function setIcon(imageLink) {
+	var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = imageLink;
+    document.getElementsByTagName('head')[0].appendChild(link);
 }
 
 function getJSONP(url, success) {
