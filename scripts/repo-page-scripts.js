@@ -310,6 +310,7 @@ function renderUserGist(gists) {
 			
 		} else {
 			getStringP(fileObj.raw_url, function(data){
+				alert(`gist-${fileObj.filename}`);
 				document.getElementById(`gist-${fileObj.filename}`).innerHTML = data;
 			}, function(err){document.getElementById(`gist-${fileObj.filename}`).innerHTML = err;});  
 		}
