@@ -31,7 +31,7 @@ function main() {
 		name = splited[1];
 	}
 	if (PageType === 1) {
-		getOrganizationProfileInfo('https://api.github.com/orgs/' + name, name); 
+		getOrganizationProfileInfo('https://api.github.com/users/' + name, name); 
 		getOrganizationOrProfileRepos(name);
 		
 	} else if (PageType === 2) {
@@ -58,11 +58,11 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 			if (data.description || data.bio) {
 				setOrganizationOrProfileInfo(data);
 			} else {
-				getOrganizationProfileInfo('https://api.github.com/users/' + name, name);
+				getOrganizationProfileInfo('https://api.github.com/orgs/' + name, name);
 			}
 			
 		}, function(err) {
-			getOrganizationProfileInfo('https://api.github.com/users/' + name, name);
+			getOrganizationProfileInfo('https://api.github.com/orgs/' + name, name);
 		});  
 	}
 }
@@ -83,7 +83,7 @@ function getOrganizationOrProfileRepos(orgName) {
 		}
 		
 	} else {
-		getJSONP('https://api.github.com/users/' + orgName + '/repos', function(data){
+		getJSONP('https://api.github.com/orgs/' + orgName + '/repos', function(data){
 			setOrganizationBody(data);
 		}, function(err) {
 			
@@ -195,7 +195,6 @@ function getJSONP(url, success, failed) {
     var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open('GET', url, true);
 	xmlhttp.setRequestHeader("Content-Type", "application/json");
-	xmlhttp.setRequestHeader("User-Agent", "request");
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4) {
 			if(xmlhttp.status == 200) {
