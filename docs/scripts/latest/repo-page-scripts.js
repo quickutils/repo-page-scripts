@@ -194,6 +194,8 @@ function setIcon(imageLink) {
 function getJSONP(url, success, failed) {
     var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open('GET', url, true);
+	xmlhttp.setRequestHeader("Content-Type", "application/json");
+	xmlhttp.setRequestHeader("User-Agent", "request");
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4) {
 			if(xmlhttp.status == 200) {
