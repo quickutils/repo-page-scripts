@@ -62,7 +62,7 @@ a:hover {
 }
 
 .org-main {
-	width: 80%;
+	width: 90%;
 	padding: 1%;
 	display: flex;
 	justify-content: flex-start;
@@ -99,7 +99,7 @@ a:hover {
 	font-size: 15px;
 	color: grey;
 	height:90px; 
-	max-height:90px; 
+	max-height:87px; 
 	word-wrap:break-word;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -130,6 +130,7 @@ a:hover {
 }
 
 .tabcontent .org-main {
+	width: 90% !important;
 	margin: 10px !important;
 	padding: 10px !important;
 }

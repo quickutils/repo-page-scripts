@@ -122,10 +122,10 @@ function setOrganizationBody(repos) {
 
 function setProfileBody(repos) {
 	document.body.innerHTML += `<div class="container" id="container">
-		<button class="tablink" onclick="openPage('Repositories', this)" id="defaultOpen">Repositories</button>
-		<button class="tablink" onclick="openPage('Organizations', this)" >Organizations</button>
-		<button class="tablink" onclick="openPage('Gists', this)">Gists</button>
-		<button class="tablink" onclick="openPage('All-Repos', this)">All Repos</button>
+		<button class="tablink" onclick="openRepositories(this)" id="defaultOpen">Repositories</button>
+		<button class="tablink" onclick="openOrganization(this)" >Organizations</button>
+		<button class="tablink" onclick="openGists(this)">Gists</button>
+		<button class="tablink" onclick="openAllRepos(this)">All Repos</button>
 		
 		<div id="Repositories" class="tabcontent">
 			<div class="org-main" id="org-main-repos">
@@ -212,6 +212,41 @@ function getJSONP(url, success, failed) {
 		}
 	};
 	xmlhttp.send(null);
+}
+
+function openRepositories(elmnt) {
+	openPage('Repositories', elmnt);
+}
+
+function openOrganization(elmnt) {
+	openPage('Organizations', elmnt);
+	if (LoadedOrgs === false) {
+		if (TestType !== 0) {
+			if (TestType === 2) {
+				var data = getUserOrgs();
+				console.log(data);
+			}
+			
+		} else {
+			getJSONP('https://api.github.com/users/' + orgName + '/repos', function(data){
+				console.log(data);
+			}, function(err){});  
+		}
+	}
+}
+
+function openGists(elmnt) {
+	openPage('Gists', elmnt);
+	if (LoadedGists === false) {
+		
+	}
+}
+
+function openAllRepos(elmnt) {
+	openPage('All-Repos', elmnt);
+	if (LoadedAllRepos === false) {
+		
+	}
 }
 
 function openPage(pageName,elmnt) {

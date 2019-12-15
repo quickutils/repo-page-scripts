@@ -3436,3 +3436,95 @@ function getProfileReposTest() {
 	  }
 	];
 }
+
+function getUserOrgs() {
+	return [
+	  {
+		"login": "theratioproject",
+		"id": 35652181,
+		"node_id": "MDEyOk9yZ2FuaXphdGlvbjM1NjUyMTgx",
+		"url": "https://api.github.com/orgs/theratioproject",
+		"repos_url": "https://api.github.com/orgs/theratioproject/repos",
+		"events_url": "https://api.github.com/orgs/theratioproject/events",
+		"hooks_url": "https://api.github.com/orgs/theratioproject/hooks",
+		"issues_url": "https://api.github.com/orgs/theratioproject/issues",
+		"members_url": "https://api.github.com/orgs/theratioproject/members{/member}",
+		"public_members_url": "https://api.github.com/orgs/theratioproject/public_members{/member}",
+		"avatar_url": "https://avatars2.githubusercontent.com/u/35652181?v=4",
+		"description": ""
+	  },
+	  {
+		"login": "sourcerersproject",
+		"id": 49775962,
+		"node_id": "MDEyOk9yZ2FuaXphdGlvbjQ5Nzc1OTYy",
+		"url": "https://api.github.com/orgs/sourcerersproject",
+		"repos_url": "https://api.github.com/orgs/sourcerersproject/repos",
+		"events_url": "https://api.github.com/orgs/sourcerersproject/events",
+		"hooks_url": "https://api.github.com/orgs/sourcerersproject/hooks",
+		"issues_url": "https://api.github.com/orgs/sourcerersproject/issues",
+		"members_url": "https://api.github.com/orgs/sourcerersproject/members{/member}",
+		"public_members_url": "https://api.github.com/orgs/sourcerersproject/public_members{/member}",
+		"avatar_url": "https://avatars0.githubusercontent.com/u/49775962?v=4",
+		"description": ""
+	  },
+	  {
+		"login": "keyvaluedb",
+		"id": 55697485,
+		"node_id": "MDEyOk9yZ2FuaXphdGlvbjU1Njk3NDg1",
+		"url": "https://api.github.com/orgs/keyvaluedb",
+		"repos_url": "https://api.github.com/orgs/keyvaluedb/repos",
+		"events_url": "https://api.github.com/orgs/keyvaluedb/events",
+		"hooks_url": "https://api.github.com/orgs/keyvaluedb/hooks",
+		"issues_url": "https://api.github.com/orgs/keyvaluedb/issues",
+		"members_url": "https://api.github.com/orgs/keyvaluedb/members{/member}",
+		"public_members_url": "https://api.github.com/orgs/keyvaluedb/public_members{/member}",
+		"avatar_url": "https://avatars1.githubusercontent.com/u/55697485?v=4",
+		"description": "Light weight package to quickly and easily manage, load, update and save key-value type database. "
+	  },
+	  {
+		"login": "libsuperc",
+		"id": 57629577,
+		"node_id": "MDEyOk9yZ2FuaXphdGlvbjU3NjI5NTc3",
+		"url": "https://api.github.com/orgs/libsuperc",
+		"repos_url": "https://api.github.com/orgs/libsuperc/repos",
+		"events_url": "https://api.github.com/orgs/libsuperc/events",
+		"hooks_url": "https://api.github.com/orgs/libsuperc/hooks",
+		"issues_url": "https://api.github.com/orgs/libsuperc/issues",
+		"members_url": "https://api.github.com/orgs/libsuperc/members{/member}",
+		"public_members_url": "https://api.github.com/orgs/libsuperc/public_members{/member}",
+		"avatar_url": "https://avatars2.githubusercontent.com/u/57629577?v=4",
+		"description": null
+	  },
+	  {
+		"login": "thedarkprojects",
+		"id": 58205001,
+		"node_id": "MDEyOk9yZ2FuaXphdGlvbjU4MjA1MDAx",
+		"url": "https://api.github.com/orgs/thedarkprojects",
+		"repos_url": "https://api.github.com/orgs/thedarkprojects/repos",
+		"events_url": "https://api.github.com/orgs/thedarkprojects/events",
+		"hooks_url": "https://api.github.com/orgs/thedarkprojects/hooks",
+		"issues_url": "https://api.github.com/orgs/thedarkprojects/issues",
+		"members_url": "https://api.github.com/orgs/thedarkprojects/members{/member}",
+		"public_members_url": "https://api.github.com/orgs/thedarkprojects/public_members{/member}",
+		"avatar_url": "https://avatars0.githubusercontent.com/u/58205001?v=4",
+		"description": "Creepy, Shady but Useful programs and libs. Harmless to user. Mainly for Educational and Learning purpose."
+	  },
+	  {
+		"login": "quickutils",
+		"id": 58535737,
+		"node_id": "MDEyOk9yZ2FuaXphdGlvbjU4NTM1NzM3",
+		"url": "https://api.github.com/orgs/quickutils",
+		"repos_url": "https://api.github.com/orgs/quickutils/repos",
+		"events_url": "https://api.github.com/orgs/quickutils/events",
+		"hooks_url": "https://api.github.com/orgs/quickutils/hooks",
+		"issues_url": "https://api.github.com/orgs/quickutils/issues",
+		"members_url": "https://api.github.com/orgs/quickutils/members{/member}",
+		"public_members_url": "https://api.github.com/orgs/quickutils/public_members{/member}",
+		"avatar_url": "https://avatars0.githubusercontent.com/u/58535737?v=4",
+		"description": "Portable scripts and utilities to get a single task done efficiently and quickly "
+	  }
+	];
+}
+
+
+
