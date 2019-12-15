@@ -32,7 +32,6 @@ function main() {
 	}
 	if (PageType === 1) {
 		getOrganizationProfileInfo('https://api.github.com/users/' + name, name); 
-		getOrganizationOrProfileRepos(name);
 		
 	} else if (PageType === 2) {
 		//repo
@@ -71,9 +70,10 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 function setOrganizationOrProfileInfo(org) {
 	setMeta(org);
 	setTitle(org);
+	getOrganizationOrProfileRepos(name, (org.type === "User"));
 }
 
-function getOrganizationOrProfileRepos(orgName) {
+function getOrganizationOrProfileRepos(orgName, isUser) {
 	if (TestType !== 0) {
 		if (TestType === 1) {
 			setOrganizationBody(getOrgReposTest());
@@ -85,7 +85,11 @@ function getOrganizationOrProfileRepos(orgName) {
 		
 	} else {
 		getJSONP('https://api.github.com/users/' + orgName + '/repos', function(data){
-			setOrganizationBody(data);
+			if (isUser === true) {
+				setProfileBody(data);
+			} else {
+				setOrganizationBody(data);
+			}
 		}, function(err) {
 			
 		});  
