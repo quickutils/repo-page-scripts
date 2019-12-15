@@ -55,15 +55,13 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 		}
 	} else {
 		getJSONP(apiEndpoint, function(data){
-			if (data.description) {
+			if (data.description || data.bio) {
 				setOrganizationOrProfileInfo(data);
 			} else {
-				alert("We good here: " + 'https://api.github.com/users/' + name);
 				getOrganizationProfileInfo('https://api.github.com/users/' + name, name);
 			}
 			
 		}, function(err) {
-			alert("We good here: " + 'https://api.github.com/users/' + name);
 			getOrganizationProfileInfo('https://api.github.com/users/' + name, name);
 		});  
 	}
