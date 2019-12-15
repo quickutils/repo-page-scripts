@@ -84,7 +84,7 @@ function getOrganizationOrProfileRepos(orgName) {
 		}
 		
 	} else {
-		getJSONP('https://api.github.com/orgs/' + orgName + '/repos', function(data){
+		getJSONP('https://api.github.com/users/' + orgName + '/repos', function(data){
 			setOrganizationBody(data);
 		}, function(err) {
 			
