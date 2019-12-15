@@ -70,10 +70,10 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 function setOrganizationOrProfileInfo(org) {
 	setMeta(org);
 	setTitle(org);
-	getOrganizationOrProfileRepos(org.login, (org.type === "User"));
+	getOrganizationOrProfileRepos(org);
 }
 
-function getOrganizationOrProfileRepos(orgName, isUser) {
+function getOrganizationOrProfileRepos(org) {
 	if (TestType !== 0) {
 		if (TestType === 1) {
 			setOrganizationBody(getOrgReposTest());
@@ -84,9 +84,9 @@ function getOrganizationOrProfileRepos(orgName, isUser) {
 		}
 		
 	} else {
-		getJSONP('https://api.github.com/users/' + orgName + '/repos', function(data){
-			if (isUser === true) {
-				setProfileBody(data);
+		getJSONP('https://api.github.com/users/' + org.login + '/repos', function(data){
+			if (org.type === "User") {
+				setProfileBody(org, data);
 			} else {
 				setOrganizationBody(data);
 			}
@@ -120,12 +120,12 @@ function setOrganizationBody(repos) {
 	}
 }
 
-function setProfileBody(repos) {
+function setProfileBody(org, repos) {
 	document.body.innerHTML += `<div class="container" id="container">
-		<button class="tablink" onclick="openRepositories(this)" id="defaultOpen">Repositories</button>
-		<button class="tablink" onclick="openOrganization(this)" >Organizations</button>
-		<button class="tablink" onclick="openGists(this)">Gists</button>
-		<button class="tablink" onclick="openAllRepos(this)">All Repos</button>
+		<button class="tablink" onclick="openRepositories(this, '${org.repos_url}')" id="defaultOpen">Repositories</button>
+		<button class="tablink" onclick="openOrganization(this, '${org.organizations_url}')" >Organizations</button>
+		<button class="tablink" onclick="openGists(this, '${org.gists_url}')">Gists</button>
+		<button class="tablink" onclick="openAllRepos(this, org)">All Repos</button>
 		
 		<div id="Repositories" class="tabcontent">
 			<div class="org-main" id="org-main-repos">
@@ -214,11 +214,11 @@ function getJSONP(url, success, failed) {
 	xmlhttp.send(null);
 }
 
-function openRepositories(elmnt) {
+function openRepositories(elmnt, apiEndpoint) {
 	openPage('Repositories', elmnt);
 }
 
-function openOrganization(elmnt) {
+function openOrganization(elmnt, apiEndpoint) {
 	openPage('Organizations', elmnt);
 	if (LoadedOrgs === false) {
 		if (TestType !== 0) {
@@ -228,24 +228,24 @@ function openOrganization(elmnt) {
 			}
 			
 		} else {
-			getJSONP('https://api.github.com/users/' + orgName + '/repos', function(data){
+			getJSONP(apiEndpoint, function(data){
 				console.log(data);
 			}, function(err){});  
 		}
 	}
 }
 
-function openGists(elmnt) {
+function openGists(elmnt, apiEndpoint) {
 	openPage('Gists', elmnt);
 	if (LoadedGists === false) {
 		
 	}
 }
 
-function openAllRepos(elmnt) {
+function openAllRepos(elmnt, org) {
 	openPage('All-Repos', elmnt);
 	if (LoadedAllRepos === false) {
-		
+		console.log(org);
 	}
 }
 
