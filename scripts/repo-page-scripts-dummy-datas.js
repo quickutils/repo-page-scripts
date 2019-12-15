@@ -3494,34 +3494,6 @@ function getUserOrgs() {
 		"public_members_url": "https://api.github.com/orgs/libsuperc/public_members{/member}",
 		"avatar_url": "https://avatars2.githubusercontent.com/u/57629577?v=4",
 		"description": null
-	  },
-	  {
-		"login": "thedarkprojects",
-		"id": 58205001,
-		"node_id": "MDEyOk9yZ2FuaXphdGlvbjU4MjA1MDAx",
-		"url": "https://api.github.com/orgs/thedarkprojects",
-		"repos_url": "https://api.github.com/orgs/thedarkprojects/repos",
-		"events_url": "https://api.github.com/orgs/thedarkprojects/events",
-		"hooks_url": "https://api.github.com/orgs/thedarkprojects/hooks",
-		"issues_url": "https://api.github.com/orgs/thedarkprojects/issues",
-		"members_url": "https://api.github.com/orgs/thedarkprojects/members{/member}",
-		"public_members_url": "https://api.github.com/orgs/thedarkprojects/public_members{/member}",
-		"avatar_url": "https://avatars0.githubusercontent.com/u/58205001?v=4",
-		"description": "Creepy, Shady but Useful programs and libs. Harmless to user. Mainly for Educational and Learning purpose."
-	  },
-	  {
-		"login": "quickutils",
-		"id": 58535737,
-		"node_id": "MDEyOk9yZ2FuaXphdGlvbjU4NTM1NzM3",
-		"url": "https://api.github.com/orgs/quickutils",
-		"repos_url": "https://api.github.com/orgs/quickutils/repos",
-		"events_url": "https://api.github.com/orgs/quickutils/events",
-		"hooks_url": "https://api.github.com/orgs/quickutils/hooks",
-		"issues_url": "https://api.github.com/orgs/quickutils/issues",
-		"members_url": "https://api.github.com/orgs/quickutils/members{/member}",
-		"public_members_url": "https://api.github.com/orgs/quickutils/public_members{/member}",
-		"avatar_url": "https://avatars0.githubusercontent.com/u/58535737?v=4",
-		"description": "Portable scripts and utilities to get a single task done efficiently and quickly "
 	  }
 	];
 }

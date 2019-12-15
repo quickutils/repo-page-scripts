@@ -79,7 +79,7 @@ function getOrganizationOrProfileRepos(org) {
 			setOrganizationBody(getOrgReposTest());
 			
 		} else if (TestType === 2) {
-			setProfileBody(getProfileReposTest());
+			setProfileBody(org, getProfileReposTest());
 			
 		}
 		
@@ -125,7 +125,7 @@ function setProfileBody(org, repos) {
 		<button class="tablink" onclick="openRepositories(this, '${org.repos_url}')" id="defaultOpen">Repositories</button>
 		<button class="tablink" onclick="openOrganization(this, '${org.organizations_url}')" >Organizations</button>
 		<button class="tablink" onclick="openGists(this, '${org.gists_url}')">Gists</button>
-		<button class="tablink" onclick="openAllRepos(this, org)">All Repos</button>
+		<button class="tablink" onclick="openAllRepos(this, '${org.repos_url}', '${org.organizations_url}')">All Repos</button>
 		
 		<div id="Repositories" class="tabcontent">
 			<div class="org-main" id="org-main-repos">
@@ -242,10 +242,11 @@ function openGists(elmnt, apiEndpoint) {
 	}
 }
 
-function openAllRepos(elmnt, org) {
+function openAllRepos(elmnt, reposEndpoint, orgsEndpoint) {
 	openPage('All-Repos', elmnt);
 	if (LoadedAllRepos === false) {
-		console.log(org);
+		console.log(reposEndpoint);
+		console.log(orgsEndpoint);
 	}
 }
 
