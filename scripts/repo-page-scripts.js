@@ -55,7 +55,7 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 		}
 	} else {
 		getJSONP(apiEndpoint, function(data){
-			if (data.org.description) {
+			if (data.description) {
 				setOrganizationOrProfileInfo(data);
 			} else {
 				getOrganizationProfileInfo('https://api.github.com/users/' + name, name);
