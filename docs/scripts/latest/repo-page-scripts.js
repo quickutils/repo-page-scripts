@@ -11,9 +11,8 @@ TestType
 /**
 PageType
 0 = None
-1 = Org
-2 = Profile
-3 = Repo
+1 = Org/Profile
+2 = Repo
 
 **/
 var TestType = (typeof TestType === "undefined" ? 0 : TestType );
@@ -33,10 +32,6 @@ function main() {
 		getOrganizationOrProfileRepos(name);
 		
 	} else if (PageType === 2) {
-		getOrganizationProfileInfo('https://api.github.com/users/' + name);
-		getOrganizationOrProfileRepos(name);
-		
-	} else if (PageType === 3) {
 		//repo
 		
 	}
@@ -85,6 +80,7 @@ function getOrganizationOrProfileRepos(orgName) {
 }
 
 function setOrganizationOrProfileRepos(repos) {
+	document.body.innerHTML += `<div class="org-main" id="org-main"> </div>`;
 	var div = document.getElementById('org-main');
 	for (var repo of repos) {
 		var repoHTML = `
@@ -108,23 +104,23 @@ function setOrganizationOrProfileRepos(repos) {
 }
 
 function setMeta(org) {
-	document.querySelector('meta[name="description"]').setAttribute("content", org.description);
-	document.querySelector('meta[property="og:title"]').setAttribute("content", org.name);
-	document.querySelector('meta[property="og:image"]').setAttribute("content", org.avatar_url);
-	document.querySelector('meta[property="og:description"]').setAttribute("content", org.description);
+	if (document.querySelector('meta[name="description"]') !== null) document.querySelector('meta[name="description"]').setAttribute("content", org.description);
+	if (document.querySelector('meta[property="og:title"]') !== null) document.querySelector('meta[property="og:title"]').setAttribute("content", org.name);
+	if (document.querySelector('meta[property="og:image"]') !== null) document.querySelector('meta[property="og:image"]').setAttribute("content", org.avatar_url);
+	if (document.querySelector('meta[property="og:description"]') !== null) document.querySelector('meta[property="og:description"]').setAttribute("content", org.description);
 }
 
 function setTitle(org) {
 	document.title = org.name ;
-	var titleDivContent = `
+	var titleDivContent = `<div class="org-title" id="org-title">
 		<br/><img id="org-title-image" class="circular_image" alt="${org.description}" src="${org.avatar_url}">
 		<br/><br/><a href="${org.html_url}"><span id="org-title-title" >${org.name}</span></a>
 		<p>`
 				
 		+ (org.description ? `${org.description}` : ``) +
 				
-		`</p>`;
-	document.getElementById("org-title").innerHTML= titleDivContent; 
+		`</p></div>`;
+	document.body.innerHTML += titleDivContent; 
 }
 
 function getJSONP(url, success) {
@@ -140,6 +136,23 @@ function getJSONP(url, success) {
 	};
 	xmlhttp.send(null);
 }
+
+function openPage(pageName,elmnt,color) {
+	var i, tabcontent, tablinks;
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	}
+	tablinks = document.getElementsByClassName("tablink");
+	for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].style.backgroundColor = "";
+	}
+	document.getElementById(pageName).style.display = "block";
+	elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+//document.getElementById("defaultOpen").click();
 
 function getOrginfoTest() {
 	return {
