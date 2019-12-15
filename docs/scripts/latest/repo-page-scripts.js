@@ -240,7 +240,7 @@ function renderUserOrganizations(orgs) {
 		var repoHTML = `
 			<div class="org-main-org">
 				<img id="org-title-image" class="image" alt="${org.login}" src="${org.avatar_url}">
-				<br/><a class="title" href="https://${org.login}.github.io">keyvaluedb</a>
+				<br/><a class="title" href="https://${org.login}.github.io">${org.login}</a>
 				<a href="https://${org.login}.github.io"><p>`
 				
 				+ (org.description ? `${org.description}` : ``) +
