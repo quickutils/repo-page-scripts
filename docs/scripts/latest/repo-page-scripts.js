@@ -55,13 +55,14 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 		}
 	} else {
 		getJSONP(apiEndpoint, function(data){
-			
 			if (data.org.description) {
 				setOrganizationOrProfileInfo(data);
 			} else {
 				getOrganizationProfileInfo('https://api.github.com/users/' + name, name);
 			}
 			
+		}, function(err) {
+			getOrganizationProfileInfo('https://api.github.com/users/' + name, name);
 		});  
 	}
 }
@@ -84,6 +85,8 @@ function getOrganizationOrProfileRepos(orgName) {
 	} else {
 		getJSONP('https://api.github.com/users/' + orgName + '/repos', function(data){
 			setOrganizationBody(data);
+		}, function(err) {
+			
 		});  
 	}
 }
@@ -188,7 +191,7 @@ function setIcon(imageLink) {
     document.getElementsByTagName('head')[0].appendChild(link);
 }
 
-function getJSONP(url, success) {
+function getJSONP(url, success, failed) {
     var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open('GET', url, true);
 	xmlhttp.onreadystatechange = function() {
@@ -196,7 +199,10 @@ function getJSONP(url, success) {
 			if(xmlhttp.status == 200) {
 				var obj = JSON.parse(xmlhttp.responseText);
 				success(obj);
-			 }
+			} else {
+				var obj = (xmlhttp.responseText ? JSON.parse(xmlhttp.responseText) : {} );
+				failed(obj);
+			}
 		}
 	};
 	xmlhttp.send(null);
