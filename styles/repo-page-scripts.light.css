@@ -79,6 +79,7 @@ a:hover {
 	width: 370px;
 	height: 180px;
 	text-decoration: none;
+	flex: 1 1 auto;
 }
 
 .org-main .org-main-repo stat {
@@ -130,7 +131,5 @@ a:hover {
 }
 
 .tabcontent .org-main {
-	width: 90% !important;
-	margin: 10px !important;
-	padding: 10px !important;
+	width: 100% !important;
 }
