@@ -199,7 +199,7 @@ function getJSONP(url, success, failed) {
 			if(xmlhttp.status == 200) {
 				var obj = JSON.parse(xmlhttp.responseText);
 				success(obj);
-			} else {
+			} else if(xmlhttp.status == 404){
 				var obj = (xmlhttp.responseText ? JSON.parse(xmlhttp.responseText) : {} );
 				failed(obj);
 			}
