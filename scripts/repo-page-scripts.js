@@ -58,10 +58,12 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 			if (data.description) {
 				setOrganizationOrProfileInfo(data);
 			} else {
+				alert("We good here");
 				getOrganizationProfileInfo('https://api.github.com/users/' + name, name);
 			}
 			
 		}, function(err) {
+			alert("We good here");
 			getOrganizationProfileInfo('https://api.github.com/users/' + name, name);
 		});  
 	}
