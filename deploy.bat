@@ -16,7 +16,7 @@ if "!COMMIT_MESSAGE!"=="" (
 )
 
 REM GENERATE THE language-color.css content
-extract_github_color.ps1 
+REM extract_github_color.ps1 
 
 IF NOT EXIST "!SCRIPTS_DIR!" ( MKDIR "!SCRIPTS_DIR!")
 IF NOT EXIST "!STYLES_DIR!" ( MKDIR "!STYLES_DIR!")
