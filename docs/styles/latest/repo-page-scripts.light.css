@@ -1,3 +1,6 @@
+
+@import url("language-color.css");
+
 * {
   transition: .33s ease all;
   box-sizing: border-box;

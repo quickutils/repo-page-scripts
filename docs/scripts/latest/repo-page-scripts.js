@@ -1,31 +1,60 @@
 
+/**
+TestType
+0 = Not Test
+1 = Org
+2 = Profile
+3 = Repo
 
-var IsTest = true;
+**/
+
+/**
+PageType
+0 = None
+1 = Org
+2 = Profile
+3 = Repo
+
+**/
+var TestType = (typeof TestType === "undefined" ? 0 : TestType );
 
 main()
 function main() {
-	var isOrg = false;
+	var PageType = 1;
 	var url = window.location.href ; //"https://quickutils.github.io/";//
 	var splited = url.replace("https://", '').replace(/\\|\//g, '').split("?")[0].split(".github.io");
 	var name = splited[0].replace(".github.io/", '');
 	if (splited.length > 1 && splited[1].trim() != "") {
-		isOrg = false;
+		PageType = 2;
 		name = splited[1];
 	}
-	if (url.indexOf("light.html") < 0) {
-		IsTest = false;
-	}
-	if (isOrg === true) { 
+	if (PageType === 1) {
 		getOrganizationProfileInfo('https://api.github.com/orgs/' + name); 
-	} else { 
+		getOrganizationOrProfileRepos(name);
+		
+	} else if (PageType === 2) {
 		getOrganizationProfileInfo('https://api.github.com/users/' + name);
+		getOrganizationOrProfileRepos(name);
+		
+	} else if (PageType === 3) {
+		//repo
+		
 	}
-	var repos = getOrganizationOrProfileRepos(name);
+	
 }
 
 function getOrganizationProfileInfo(apiEndpoint) {
-	if (IsTest) {
-		setOrganizationOrProfileInfo(getProfileinfoTest());
+	if (TestType !== 0) {
+		if (TestType === 1) {
+			setOrganizationOrProfileInfo(getOrginfoTest());
+			
+		} else if (TestType === 2) {
+			setOrganizationOrProfileInfo(getProfileinfoTest());
+			
+		} else if (TestType === 3) {
+			setOrganizationOrProfileInfo(getRepoinfoTest());
+			
+		}
 	} else {
 		getJSONP(apiEndpoint, function(data){
 			setOrganizationOrProfileInfo(data);
@@ -39,8 +68,15 @@ function setOrganizationOrProfileInfo(org) {
 }
 
 function getOrganizationOrProfileRepos(orgName) {
-	if (IsTest) {
-		setOrganizationOrProfileRepos(getProfileReposTest());
+	if (TestType !== 0) {
+		if (TestType === 1) {
+			setOrganizationOrProfileRepos(getOrgReposTest());
+			
+		} else if (TestType === 2) {
+			setOrganizationOrProfileRepos(getProfileReposTest());
+			
+		} 
+		
 	} else {
 		getJSONP('https://api.github.com/users/' + orgName + '/repos', function(data){
 			setOrganizationOrProfileRepos(data);
@@ -61,7 +97,7 @@ function setOrganizationOrProfileRepos(repos) {
 				
 				`</p>`
 				
-				+ (repo.language ? `<i class="fa fa-circle"></i> ${repo.language}` : `<i class="fa fa-circle"></i> None`) +
+				+ (repo.language ? `<i class="fa fa-circle color-${repo.language.replace(' ', '-').toLowerCase()}"></i> ${repo.language}` : `<i class="fa fa-circle"></i> None`) +
 				
 				`<stat> <i class="fa fa-star"></i> ${repo.stargazers_count}</stat>
 				<stat> <i class="fa fa-code-fork"></i> ${repo.forks_count}</stat>
