@@ -1,0 +1,137 @@
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("language-color.css");
+
+* {
+  transition: .33s ease all;
+  box-sizing: border-box;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-family: 'Questrial', sans-serif;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.org-title {
+	margin: 1%;
+	text-align: center;
+}
+
+.org-title #org-title-image {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.org-title #org-title-title {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.circular_image {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	overflow: hidden;
+	background-color: white;
+	display:inline-block;
+	vertical-align:middle;
+}
+
+.circular_image img{
+	width:100%;
+}
+
+.container {
+	width: 95%;
+	padding: 1%;
+	margin: 0px auto;
+}
+
+.org-main {
+	width: 80%;
+	padding: 1%;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	margin: 0px auto;
+}
+
+.org-main .org-main-repo {
+	margin: 10px;
+	background: white;
+	border:1px solid #ebeae8;
+	padding: 15px;
+	border-radius: 2%;
+	width: 370px;
+	height: 180px;
+	text-decoration: none;
+}
+
+.org-main .org-main-repo stat {
+	margin-left:20px;
+}
+
+.org-main .org-main-repo i {
+	color: #636466;
+	font-size: 15px;
+}
+
+.org-main .org-main-repo a {
+	text-decoration: none;
+	color: #3d6cd9;
+}
+
+.org-main .org-main-repo p {
+	font-size: 15px;
+	color: grey;
+	height:90px; 
+	max-height:90px; 
+	word-wrap:break-word;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+* {box-sizing: border-box}
+
+.tablink {
+	background-color: white;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	font-size: 17px;
+	width: 25%;
+	border:1px solid #ebeae8;
+}
+
+.tablink:hover {
+	background-color: #ededed;
+	border:1px solid #ebeae8;
+}
+
+.tabcontent {
+	display: none;
+	height: 100%;
+	padding: 20px;
+	margin: 20px;
+}
+
+.tabcontent .org-main {
+	margin: 20px !important;
+	padding: 20px !important;
+}

@@ -25,8 +25,10 @@ robocopy %~dp0/scripts !SCRIPTS_DIR! /MIR
 robocopy %~dp0/styles !STYLES_DIR! /MIR
 
 if not "!VERSION!"=="latest" (
-	SET VERSION=latest
-	goto:latest
+	if not "!VERSION!"=="none" (
+		SET VERSION=latest
+		goto:latest
+	)
 )
 
 echo pushimg deploy: !COMMIT_MESSAGE!

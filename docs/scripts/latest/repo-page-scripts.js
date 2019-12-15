@@ -28,8 +28,8 @@ function main() {
 		name = splited[1];
 	}
 	if (PageType === 1) {
-		//getOrganizationProfileInfo('https://api.github.com/orgs/' + name); 
-		//getOrganizationOrProfileRepos(name);
+		getOrganizationProfileInfo('https://api.github.com/orgs/' + name); 
+		getOrganizationOrProfileRepos(name);
 		
 	} else if (PageType === 2) {
 		//repo
