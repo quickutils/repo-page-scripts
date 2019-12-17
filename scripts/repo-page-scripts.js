@@ -55,7 +55,7 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 		}
 	} else {
 		getJSONP(apiEndpoint, function(data){
-			if (data.description || data.bio) {
+			if (data.id) {
 				setOrganizationOrProfileInfo(data);
 			} else {
 				getOrganizationProfileInfo('https://api.github.com/orgs/' + name, name);
@@ -182,7 +182,7 @@ function setTitle(org) {
 		<br/><br/><a href="${org.html_url}"><span id="org-title-title" >${org.name}</span></a>
 		<p>`
 				
-		+ (org.description ? `${org.description}` : ``) +
+		+ (org.description ? `${org.description}` : (org.bio ? `${org.bio}` : ``)) +
 				
 		`</p>`;
 	document.getElementById('org-title').innerHTML += titleDivContent; 
