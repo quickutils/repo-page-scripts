@@ -97,77 +97,81 @@ function getOrganizationOrProfileRepos(org) {
 	}
 }
 
-function setOrganizationBody(repos) {
-	document.body.innerHTML += `<div class="org-main" id="org-main"> </div>`;
-	var div = document.getElementById('org-main');
-	for (var repo of repos) {
-		if (ShowForked === false && repo.fork == true) continue;
-		var repoHTML = `
-			<div class="org-main-repo">
-				<i class="fa fa-book"></i>
-				<a href="https://${repo.owner.login}.github.io/${repo.name}"><span style="margin-left:5px;">${repo.name}</span></a>
-				<p>`
-				
-				+ (repo.description ? `${repo.description}` : ``) +
-				
-				`</p>`
-				
-				+ (repo.language ? `<i class="fa fa-circle color-${repo.language.replace(' ', '-').toLowerCase()}"></i> ${repo.language}` : `<i class="fa fa-circle"></i> None`) +
-				
-				`<stat> <i class="fa fa-star"></i> ${repo.stargazers_count}</stat>
-				<stat> <i class="fa fa-code-fork"></i> ${repo.forks_count}</stat>
-				</div>
-		`;
-		div.innerHTML += (repoHTML);
-	}
+function setOrganizationBody(unSortedrepos) {
+	sortByStarCount(unSortedrepos, function(repos) {
+		document.body.innerHTML += `<div class="org-main" id="org-main"> </div>`;
+		var div = document.getElementById('org-main');
+		for (var repo of repos) {
+			if (ShowForked === false && repo.fork == true) continue;
+			var repoHTML = `
+				<div class="org-main-repo">
+					<i class="fa fa-book"></i>
+					<a href="https://${repo.owner.login}.github.io/${repo.name}"><span style="margin-left:5px;">${repo.name}</span></a>
+					<p>`
+					
+					+ (repo.description ? `${repo.description}` : ``) +
+					
+					`</p>`
+					
+					+ (repo.language ? `<i class="fa fa-circle color-${repo.language.replace(' ', '-').toLowerCase()}"></i> ${repo.language}` : `<i class="fa fa-circle"></i> None`) +
+					
+					`<stat> <i class="fa fa-star"></i> ${repo.stargazers_count}</stat>
+					<stat> <i class="fa fa-code-fork"></i> ${repo.forks_count}</stat>
+					</div>
+			`;
+			div.innerHTML += (repoHTML);
+		}
+	});
 }
 
-function setProfileBody(org, repos) {
-	document.body.innerHTML += `<div class="container" id="container">
-		<button class="tablink" onclick="openRepositories(this, '${org.repos_url}')" id="defaultOpen">Repositories</button>
-		<button class="tablink" onclick="openOrganization(this, '${org.organizations_url}')" >Organizations</button>
-		<button class="tablink" onclick="openGists(this, '${org.gists_url.split('{')[0]}')">Gists</button>
-		<button class="tablink" onclick="openAllRepos(this, '${org.repos_url}', '${org.organizations_url}')">All Repos</button>
-		
-		<div id="Repositories" class="tabcontent">
-			<div class="org-main" id="org-main-repos">
-			</div>
-		</div>
-		<div id="Organizations" class="tabcontent">
-			<div class="org-main" id="org-main-orgs">
-			</div>
-		</div>
-		<div id="Gists" class="tabcontent">
-			<div class="org-main" id="org-main-gists">
-			</div>
-		</div>
-		<div id="All-Repos" class="tabcontent">
-			<div class="org-main" id="org-main-all">
-			</div>
-		</div>
-	</div>`;
-	var div = document.getElementById('org-main-repos');
-	for (var repo of repos) {
-		if (ShowForked === false && repo.fork == true) continue;
-		var repoHTML = `
-			<div class="org-main-repo">
-				<i class="fa fa-book"></i>
-				<a href="https://${repo.owner.login}.github.io/${repo.name}"><span style="margin-left:5px;">${repo.name}</span></a>
-				<p>`
-				
-				+ (repo.description ? `${repo.description}` : ``) +
-				
-				`</p>`
-				
-				+ (repo.language ? `<i class="fa fa-circle color-${repo.language.replace('+', 'p').replace("'", '').replace("#", 'sharp').replace("*", 'star').replace("!", 'not').toLowerCase()}"></i> ${repo.language}` : `<i class="fa fa-circle" style="color:black;"></i> None`) +
-				
-				`<stat> <i class="fa fa-star"></i> ${repo.stargazers_count}</stat>
-				<stat> <i class="fa fa-code-fork"></i> ${repo.forks_count}</stat>
+function setProfileBody(org, unSortedrepos) {
+	sortByStarCount(unSortedrepos, function(repos) {
+		document.body.innerHTML += `<div class="container" id="container">
+			<button class="tablink" onclick="openRepositories(this, '${org.repos_url}')" id="defaultOpen">Repositories</button>
+			<button class="tablink" onclick="openOrganization(this, '${org.organizations_url}')" >Organizations</button>
+			<button class="tablink" onclick="openGists(this, '${org.gists_url.split('{')[0]}')">Gists</button>
+			<button class="tablink" onclick="openAllRepos(this, '${org.repos_url}', '${org.organizations_url}')">All Repos</button>
+			
+			<div id="Repositories" class="tabcontent">
+				<div class="org-main" id="org-main-repos">
 				</div>
-		`;
-		div.innerHTML += (repoHTML);
-	}
-	document.getElementById('defaultOpen').click();
+			</div>
+			<div id="Organizations" class="tabcontent">
+				<div class="org-main" id="org-main-orgs">
+				</div>
+			</div>
+			<div id="Gists" class="tabcontent">
+				<div class="org-main" id="org-main-gists">
+				</div>
+			</div>
+			<div id="All-Repos" class="tabcontent">
+				<div class="org-main" id="org-main-all">
+				</div>
+			</div>
+		</div>`;
+		var div = document.getElementById('org-main-repos');
+		for (var repo of repos) {
+			if (ShowForked === false && repo.fork == true) continue;
+			var repoHTML = `
+				<div class="org-main-repo">
+					<i class="fa fa-book"></i>
+					<a href="https://${repo.owner.login}.github.io/${repo.name}"><span style="margin-left:5px;">${repo.name}</span></a>
+					<p>`
+					
+					+ (repo.description ? `${repo.description}` : ``) +
+					
+					`</p>`
+					
+					+ (repo.language ? `<i class="fa fa-circle color-${repo.language.replace('+', 'p').replace("'", '').replace("#", 'sharp').replace("*", 'star').replace("!", 'not').toLowerCase()}"></i> ${repo.language}` : `<i class="fa fa-circle" style="color:black;"></i> None`) +
+					
+					`<stat> <i class="fa fa-star"></i> ${repo.stargazers_count}</stat>
+					<stat> <i class="fa fa-code-fork"></i> ${repo.forks_count}</stat>
+					</div>
+			`;
+			div.innerHTML += (repoHTML);
+		}
+		document.getElementById('defaultOpen').click();
+	});
 }
 
 function setMeta(org) {
@@ -259,7 +263,7 @@ function renderUserOrganizations(orgs) {
 	for (var org of orgs) {
 		var repoHTML = `
 			<div class="org-main-org">
-				<img id="org-title-image" class="image" alt="${org.login}" src="${org.avatar_url}">
+				<!--<img id="org-title-image" class="image" alt="${org.login}" src="${org.avatar_url}">-->
 				<br/><a class="title" href="https://${org.login}.github.io">${org.login}</a>
 				<a href="https://${org.login}.github.io"><p>`
 				
@@ -342,4 +346,8 @@ function openPage(pageName,elmnt) {
 	document.getElementById(pageName).style.display = "block";
 	elmnt.style.backgroundColor = '#ededed';
 	elmnt.style.border = '1px solid #ebeae8';
+}
+
+function sortByStarCount(unsortedRepo, callback) {
+	callback(unsortedRepo.sort(function (a, b) { return b.stargazers_count - a.stargazers_count; }))
 }
