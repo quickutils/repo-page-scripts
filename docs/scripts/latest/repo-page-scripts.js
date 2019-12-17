@@ -16,6 +16,7 @@ PageType
 
 **/
 var TestType = (typeof TestType === "undefined" ? 0 : TestType );
+var ShowForked = (typeof ShowForked === "undefined" ? false : ShowForked );
 var LoadedOrgs = false;
 var LoadedGists = false;
 var LoadedAllRepos = false;
@@ -100,6 +101,7 @@ function setOrganizationBody(repos) {
 	document.body.innerHTML += `<div class="org-main" id="org-main"> </div>`;
 	var div = document.getElementById('org-main');
 	for (var repo of repos) {
+		if (ShowForked === false && repo.fork == true) continue;
 		var repoHTML = `
 			<div class="org-main-repo">
 				<i class="fa fa-book"></i>
@@ -146,6 +148,7 @@ function setProfileBody(org, repos) {
 	</div>`;
 	var div = document.getElementById('org-main-repos');
 	for (var repo of repos) {
+		if (ShowForked === false && repo.fork == true) continue;
 		var repoHTML = `
 			<div class="org-main-repo">
 				<i class="fa fa-book"></i>
@@ -156,7 +159,7 @@ function setProfileBody(org, repos) {
 				
 				`</p>`
 				
-				+ (repo.language ? `<i class="fa fa-circle color-${repo.language.replace(' ', '-').toLowerCase()}"></i> ${repo.language}` : `<i class="fa fa-circle"></i> None`) +
+				+ (repo.language ? `<i class="fa fa-circle color-${repo.language.replace('+', 'p').replace("'", '').replace("#", 'sharp').replace("*", 'star').replace("!", 'not').toLowerCase()}"></i> ${repo.language}` : `<i class="fa fa-circle" style="color:black;"></i> None`) +
 				
 				`<stat> <i class="fa fa-star"></i> ${repo.stargazers_count}</stat>
 				<stat> <i class="fa fa-code-fork"></i> ${repo.forks_count}</stat>

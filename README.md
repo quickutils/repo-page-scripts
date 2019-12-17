@@ -10,3 +10,5 @@ https://stackoverflow.com/questions/21681299/delete-localstorage-after-1-hour-an
 https://stackoverflow.com/questions/2010892/storing-objects-in-html5-localstorage
 
 Treat continua check and stop on 10 total ping on error
+
+JSScript arg to show forked repo, 
