@@ -8,3 +8,5 @@ Use local storage to cache result but first use github conditional api to check 
 https://developer.github.com/v3/#conditional-requests
 https://stackoverflow.com/questions/21681299/delete-localstorage-after-1-hour-and-re-fetch-data
 https://stackoverflow.com/questions/2010892/storing-objects-in-html5-localstorage
+
+Treat continua check and stop on 10 total ping on error
