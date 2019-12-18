@@ -19,10 +19,11 @@
 		<p>Portable scripts and utilities to get a single task done efficiently and quickly</p>
 	</div>
 	<div class="container" id="container">
-		<button class="tablink" onclick="openPage('Repositories', this)" id="defaultOpen">Repositories</button>
-		<button class="tablink" onclick="openPage('Organizations', this)" >Organizations</button>
-		<button class="tablink" onclick="openPage('Gists', this)">Gists</button>
-		<button class="tablink" onclick="openPage('All-Repos', this)">All Repos</button>
+		<div class="org-main">
+			<button class="tablink org-main-button" onclick="openPage('Repositories', this)" id="defaultOpen">Repositories</button>
+			<button class="tablink org-main-button" onclick="openPage('Organizations', this)" >Organizations</button>
+			<button class="tablink org-main-button" onclick="openPage('Gists', this)">Gists</button>
+		</div>
 		
 		
 		<div id="Repositories" class="tabcontent">

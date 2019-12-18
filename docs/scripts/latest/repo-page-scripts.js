@@ -127,10 +127,11 @@ function setOrganizationBody(unSortedrepos) {
 function setProfileBody(org, unSortedrepos) {
 	sortByStarCount(unSortedrepos, function(repos) {
 		document.body.innerHTML += `<div class="container" id="container">
-			<button class="tablink" onclick="openRepositories(this, '${org.repos_url}')" id="defaultOpen">Repositories</button>
-			<button class="tablink" onclick="openOrganization(this, '${org.organizations_url}')" >Organizations</button>
-			<button class="tablink" onclick="openGists(this, '${org.gists_url.split('{')[0]}')">Gists</button>
-			<button class="tablink" onclick="openAllRepos(this, '${org.repos_url}', '${org.organizations_url}')">All Repos</button>
+			<div class="org-main">
+				<button class="tablink org-main-button" onclick="openRepositories(this, '${org.repos_url}')" id="defaultOpen">Repositories</button>
+				<button class="tablink org-main-button" onclick="openOrganization(this, '${org.organizations_url}')" >Organizations</button>
+				<button class="tablink org-main-button" onclick="openGists(this, '${org.gists_url.split('{')[0]}')">Gists</button>
+			</div>
 			
 			<div id="Repositories" class="tabcontent">
 				<div class="org-main" id="org-main-repos">
@@ -263,7 +264,7 @@ function renderUserOrganizations(orgs) {
 	for (var org of orgs) {
 		var repoHTML = `
 			<div class="org-main-org">
-				<!--<img id="org-title-image" class="image" alt="${org.login}" src="${org.avatar_url}">-->
+				<img id="org-title-image" class="image" alt="${org.login}" src="${org.avatar_url}">
 				<br/><a class="title" href="https://${org.login}.github.io">${org.login}</a>
 				<a href="https://${org.login}.github.io"><p>`
 				
@@ -322,14 +323,6 @@ function renderUserGist(gists) {
 		}
 	}
 	LoadedGists = true;
-}
-
-function openAllRepos(elmnt, reposEndpoint, orgsEndpoint) {
-	openPage('All-Repos', elmnt);
-	if (LoadedAllRepos === false) {
-		console.log(reposEndpoint);
-		console.log(orgsEndpoint);
-	}
 }
 
 function openPage(pageName,elmnt) {

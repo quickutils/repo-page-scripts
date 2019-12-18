@@ -1,6 +1,6 @@
 
-/* @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"); */
-/* @import url("https://quickutils.github.io/language-color/language-color.css"); */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://quickutils.github.io/language-color/language-color.css");
 
 * {
   transition: .33s ease all;
@@ -74,6 +74,17 @@ a:hover {
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	margin: 0px auto;
+}
+
+.org-main .org-main-button {
+	margin: 10px;
+	background: white;
+	border:1px solid #ebeae8;
+	padding: 15px;
+	border-radius: 2%;
+	width: 200px;
+	text-decoration: none;
+	flex: 1 1 auto;
 }
 
 .org-main .org-main-repo {
