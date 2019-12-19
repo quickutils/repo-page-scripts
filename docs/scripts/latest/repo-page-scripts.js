@@ -39,6 +39,7 @@ function main() {
 	} else if (PageType === 2) {
 		//repo
 		getJSONP("https://api.github.com/repos/Thecarisma/8cc", function(data){
+			document.body.innerHTML += `<div class="org-title" id="org-title"></div>`; 
 			setRepoPageInfo(data);
 			
 		}, function(err) {
@@ -75,11 +76,14 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 	}
 }
 
-function setRepoPageInfo(repo) {
-	//get repo first and then 
-	repo.avatar_url = repo.owner.avatar_url;
-	setMeta(repo);
-	setTitle(repo);
+function setRepoPageInfo(repo) {	
+	setRepoBody(repo, function() {
+		repo.avatar_url = repo.owner.avatar_url;
+		setMeta(repo);
+		setTitle(repo);
+	}, function() {
+		
+	});
 }
 
 function setOrganizationOrProfileInfo(org) {
@@ -189,6 +193,36 @@ function setProfileBody(org, unSortedrepos) {
 	});
 }
 
+function setRepoBody(repo, callback, error) {
+	//get repo first and then get first image
+	if (TestType !== 0) {
+		if (TestType === 3) {
+			alert(getReadmeLink(repo.owner.login, repo.name));
+			console.log(getTestReadme());
+			callback();
+		}
+	} else {
+		getStringP(getReadmeLink(repo.owner.login, repo.name), undefined, function(data, extraParam){
+			console.log(data);
+			continueSetRepoBody(callback);
+		}, function(err){
+			if (errCode == 404) {
+				getStringP(getReadmeLink2(repo.owner.login, repo.name), undefined, function(data, extraParam){
+					console.log(data);
+					callback();
+					continueSetRepoBody(callback);
+				}, function(err){});  
+			} else {
+				error();
+			}
+		});  
+	}
+}
+
+function continueSetRepoBody(callback){
+	callback();
+}
+
 function setMeta(org) {
 	if (org.avatar_url) setIcon(org.avatar_url);
 	var meta = document.createElement('meta');
@@ -259,9 +293,8 @@ function getStringP(url, extraParam, success, failed) {
 		if (xmlhttp.readyState == 4) {
 			if(xmlhttp.status == 200) {
 				success(xmlhttp.responseText, extraParam);
-			} else if(xmlhttp.status == 404){
-				var obj = (xmlhttp.responseText ? xmlhttp.responseText : '' );
-				failed(obj);
+			} else {
+				failed(xmlhttp.status);
 			}
 		}
 	};
@@ -374,6 +407,12 @@ function sortByStarCount(unsortedRepo, callback) {
 	callback(unsortedRepo.sort(function (a, b) { return b.stargazers_count - a.stargazers_count; }))
 }
 
-function getReadmeLink(repoHtmlLink) {
+function getReadmeLink(repoOwnerName, repoName) {
+	return `https://raw.githubusercontent.com/${repoOwnerName}/${repoName}/master/README.md`;
+	return repoHtmlLink + "/blob/master/README.md";
+}
+
+function getReadmeLink2(repoOwnerName, repoName) {
+	return `https://raw.githubusercontent.com/${repoOwnerName}/${repoName}/master/README.MD`;
 	return repoHtmlLink + "/blob/master/README.md";
 }
