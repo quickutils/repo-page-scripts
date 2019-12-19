@@ -38,6 +38,9 @@ function main() {
 		
 	} else if (PageType === 2) {
 		//repo
+		alert(owner);
+		alert(pageName);
+		return;
 		getJSONP("https://api.github.com/repos/Thecarisma/8cc", function(data){
 			document.body.innerHTML += `<div class="org-title" id="org-title"></div>`; 
 			setRepoPageInfo(data);
@@ -197,7 +200,6 @@ function setRepoBody(repo, callback, error) {
 	//get repo first and then get first image
 	if (TestType !== 0) {
 		if (TestType === 3) {
-			alert(getReadmeLink(repo.owner.login, repo.name));
 			console.log(getTestReadme());
 			callback();
 		}
