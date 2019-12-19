@@ -445,7 +445,7 @@ function loadScript(url, callback) {
 }
 
 function openLink(url) {
-	window.location = url;
+	window.location = url; 
 }
 
 
