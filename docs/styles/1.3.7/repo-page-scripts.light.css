@@ -235,3 +235,57 @@ a:hover {
 .tabcontent .org-main {
 	width: 100% !important;
 }
+
+#main-panel-view {
+	background: red;
+	height: 100%;
+	margin-left: 16%;
+	padding: 6px 8px 6px 16px;
+}
+
+.left-sidenav {
+	height: 100%;
+	left: 0;
+	float: left;
+	width: 14%;
+	overflow-x: hidden;
+	padding-top: 20px;
+	margin-left: 1%;
+}
+
+.left-sidenav button {
+	margin: 6px 8px 6px 16px;
+	text-decoration: none;
+	color: #818181;
+	background-color: inherit;
+	display: block;
+	border: 0;
+	font-size: 20px;
+	cursor: hand;
+}
+
+.left-sidenav button:hover {
+	color: black;
+}
+
+.right-sidenav {
+	height: 100%;
+	z-index: 1;
+	left: 0;
+	float: right;
+	background-color: #111;
+	overflow-x: hidden;
+	padding-top: 20px;
+	margin-left: 1%;
+}
+
+.right-sidenav a {
+	padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	color: #818181;
+	display: block;
+}
+
+.right-sidenav a:hover {
+	color: #f1f1f1;
+}
