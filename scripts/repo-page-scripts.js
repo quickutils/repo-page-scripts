@@ -27,16 +27,23 @@ function main() {
 	var url = window.location.href ; //"https://quickutils.github.io/";//
 	var splited = url.replace("https://", '').replace(/\\|\//g, '').split("?")[0].split(".github.io");
 	var name = splited[0].replace(".github.io/", '');
+	var owner = name;
 	if (splited.length > 1 && splited[1].trim() != "") {
 		PageType = 2;
 		name = splited[1];
 	}
 	if (PageType === 1) {
+		//org and profile
 		getOrganizationProfileInfo('https://api.github.com/users/' + name, name); 
 		
 	} else if (PageType === 2) {
 		//repo
-		
+		getJSONP("https://api.github.com/repos/Thecarisma/8cc", function(data){
+			setRepoPageInfo(data);
+			
+		}, function(err) {
+			
+		}); 
 	}
 	
 }
@@ -51,7 +58,7 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 			setOrganizationOrProfileInfo(getProfileinfoTest());
 			
 		} else if (TestType === 3) {
-			//repo header
+			setRepoPageInfo(getTestRepoApi());
 			
 		}
 	} else {
@@ -66,6 +73,11 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 			getOrganizationProfileInfo('https://api.github.com/orgs/' + name, name);
 		});  
 	}
+}
+
+function setRepoPageInfo(repo) {
+	setMeta(repo);//set icon from first readme image
+	setTitle(repo);
 }
 
 function setOrganizationOrProfileInfo(org) {
@@ -176,7 +188,7 @@ function setProfileBody(org, unSortedrepos) {
 }
 
 function setMeta(org) {
-	setIcon(org.avatar_url);
+	if (org.avatar_url) setIcon(org.avatar_url);
 	if (document.querySelector('meta[name="description"]') !== null) document.querySelector('meta[name="description"]').setAttribute("content", org.description);
 	if (document.querySelector('meta[property="og:title"]') !== null) document.querySelector('meta[property="og:title"]').setAttribute("content", org.name);
 	if (document.querySelector('meta[property="og:image"]') !== null) document.querySelector('meta[property="og:image"]').setAttribute("content", org.avatar_url);
@@ -343,4 +355,8 @@ function openPage(pageName,elmnt) {
 
 function sortByStarCount(unsortedRepo, callback) {
 	callback(unsortedRepo.sort(function (a, b) { return b.stargazers_count - a.stargazers_count; }))
+}
+
+function getReadmeLink(repoHtmlLink) {
+	return repoHtmlLink + "/blob/master/README.md";
 }
