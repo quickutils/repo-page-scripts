@@ -39,7 +39,7 @@ function main() {
 	} else if (PageType === 2) {
 		//repo
 		alert(owner);
-		alert(pageName);
+		alert(name);
 		return;
 		getJSONP("https://api.github.com/repos/Thecarisma/8cc", function(data){
 			document.body.innerHTML += `<div class="org-title" id="org-title"></div>`; 
