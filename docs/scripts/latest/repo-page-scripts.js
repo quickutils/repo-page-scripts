@@ -232,6 +232,7 @@ function continueSetRepoBody(readmeRaw, callback){
 	converter.setOption('ghCompatibleHeaderId', true);
 	var html = converter.makeHtml(readmeRaw);
 	//document.writeln(html);
+	console.log(html);
 	callback();
 }
 
@@ -427,7 +428,7 @@ function openRepoPage(pageName,elmnt) {
 		tablinks[i].style.color = "black";
 	}
 	document.getElementById(pageName).style.display = "block";
-	elmnt.style.backgroundColor = '#ededed';
+	elmnt.style.color = 'grey';
 }
 
 function sortByStarCount(unsortedRepo, callback) {
