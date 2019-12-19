@@ -20,9 +20,13 @@ var ShowForked = (typeof ShowForked === "undefined" ? false : ShowForked );
 var LoadedOrgs = false;
 var LoadedGists = false;
 var LoadedAllRepos = false;
+var Started = false;
 
-main()
+loadScript("https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js", function() {
+	if (Started === false) main();
+});
 function main() {
+	Started = true;
 	var PageType = 1;
 	var url = window.location.href ; //"https://quickutils.github.io/";//
 	var splited = url.replace("https://", '').replace(/\\|\//g, '').split("?")[0].split(".github.io");
@@ -197,18 +201,15 @@ function setRepoBody(repo, callback, error) {
 	//get repo first and then get first image
 	if (TestType !== 0) {
 		if (TestType === 3) {
-			console.log(getTestReadme());
-			continueSetRepoBody(callback);
+			continueSetRepoBody(getTestReadme(), callback);
 		}
 	} else {
 		getStringP(getReadmeLink(repo.owner.login, repo.name), undefined, function(data, extraParam){
-			console.log(data);
-			continueSetRepoBody(callback);
+			continueSetRepoBody(data, callback);
 		}, function(errCode){
 			if (errCode == 404) {
 				getStringP(getReadmeLink2(repo.owner.login, repo.name), callback, function(data, extraParam){
-					console.log(data);
-					continueSetRepoBody(extraParam);
+					continueSetRepoBody(data, extraParam);
 				}, function(err){});  
 			} else {
 				error();
@@ -217,7 +218,19 @@ function setRepoBody(repo, callback, error) {
 	}
 }
 
-function continueSetRepoBody(callback){
+function continueSetRepoBody(readmeRaw, callback){
+	var readMeLines = readmeRaw.split('\n');
+	for (var readMeLine of readMeLines) {
+		if (readMeLine.startsWith('#') && readMeLine.indexOf('</') < 0) {
+			var segment = readMeLine.split("#").join("").trim();
+			console.log(segment);
+			//add to side bar
+		}
+	}
+	var converter = new showdown.Converter();
+	converter.setOption('ghCompatibleHeaderId', true);
+	var html = converter.makeHtml(readmeRaw);
+	//document.writeln(html);
 	callback();
 }
 
@@ -413,4 +426,19 @@ function getReadmeLink(repoOwnerName, repoName) {
 function getReadmeLink2(repoOwnerName, repoName) {
 	return `https://raw.githubusercontent.com/${repoOwnerName}/${repoName}/master/README.MD`;
 	return repoHtmlLink + "/blob/master/README.md";
+}
+
+function loadScript(url, callback) {
+    // Adding the script tag to the head as suggested before
+    var head = document.body;
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+
+    // Then bind the event to the callback function.
+    // There are several events for cross browser compatibility.
+    script.onreadystatechange = callback;
+    script.onload = callback;
+	
+    head.appendChild(script);
 }
