@@ -38,10 +38,7 @@ function main() {
 		
 	} else if (PageType === 2) {
 		//repo
-		alert(owner);
-		alert(name);
-		return;
-		getJSONP("https://api.github.com/repos/Thecarisma/8cc", function(data){
+		getJSONP(`https://api.github.com/repos/${owner}/${name}`, function(data){
 			document.body.innerHTML += `<div class="org-title" id="org-title"></div>`; 
 			setRepoPageInfo(data);
 			
