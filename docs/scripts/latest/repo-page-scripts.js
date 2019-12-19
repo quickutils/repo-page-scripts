@@ -227,6 +227,7 @@ function continueSetRepoBody(readmeRaw, callback){
 			//add to side bar
 		}
 	}
+	//TODO: Extract frist image
 	var converter = new showdown.Converter();
 	converter.setOption('ghCompatibleHeaderId', true);
 	var html = converter.makeHtml(readmeRaw);
@@ -381,7 +382,7 @@ function renderUserGist(gists) {
 				+ (gist.description ? `${gist.description}` : ``) +
 				
 				`</p></a>
-				<textarea id="gist-${fileObj.filename}" readonly></textarea>
+				<textarea id="gist-${fileObj.filename}" onclick="openLink('${gist.html_url}')" readonly></textarea>
 			</div>`;
 		div.innerHTML += (repoHTML);
 		if (TestType !== 0) {
@@ -442,3 +443,10 @@ function loadScript(url, callback) {
 	
     head.appendChild(script);
 }
+
+function openLink(url) {
+	window.location = url;
+}
+
+
+
