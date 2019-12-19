@@ -76,7 +76,9 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 }
 
 function setRepoPageInfo(repo) {
-	setMeta(repo);//set icon from first readme image
+	//get repo first and then 
+	repo.avatar_url = repo.owner.avatar_url;
+	setMeta(repo);
 	setTitle(repo);
 }
 
@@ -189,10 +191,25 @@ function setProfileBody(org, unSortedrepos) {
 
 function setMeta(org) {
 	if (org.avatar_url) setIcon(org.avatar_url);
-	if (document.querySelector('meta[name="description"]') !== null) document.querySelector('meta[name="description"]').setAttribute("content", org.description);
-	if (document.querySelector('meta[property="og:title"]') !== null) document.querySelector('meta[property="og:title"]').setAttribute("content", org.name);
-	if (document.querySelector('meta[property="og:image"]') !== null) document.querySelector('meta[property="og:image"]').setAttribute("content", org.avatar_url);
-	if (document.querySelector('meta[property="og:description"]') !== null) document.querySelector('meta[property="og:description"]').setAttribute("content", org.description);
+	var meta = document.createElement('meta');
+	meta.name = "description";
+	meta.content = org.description;
+	document.getElementsByTagName('head')[0].appendChild(meta);
+	
+	meta = document.createElement('meta');
+	meta.property = "og:title";
+	meta.content = org.name;
+	document.getElementsByTagName('head')[0].appendChild(meta);
+	
+	meta = document.createElement('meta');
+	meta.property = "og:image";
+	meta.content = org.avatar_url;
+	document.getElementsByTagName('head')[0].appendChild(meta);
+	
+	meta = document.createElement('meta');
+	meta.property = "og:description";
+	meta.content = org.description;
+	document.getElementsByTagName('head')[0].appendChild(meta);
 }
 
 function setTitle(org) {
