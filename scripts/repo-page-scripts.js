@@ -263,6 +263,7 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 	var html = converter.makeHtml(readmeRaw);
 	var imgLink = html.substr(html.indexOf('<img src="'), html.indexOf('<img src="') - html.indexOf(html.indexOf('<img src="'), '"'));
 	document.getElementById('Home').innerHTML = (html);
+	console.log(html);
 	
 	callback(repo);
 	document.getElementById('defaultOpen').click();
