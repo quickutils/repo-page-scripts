@@ -28,6 +28,12 @@ a:hover {
 	text-decoration: underline;
 }
 
+pre {
+	background: rgb(246, 248, 250);
+	padding: 2%;
+	border-radius: 2%;
+}
+
 .org-title {
 	margin: 1%;
 	text-align: center;
