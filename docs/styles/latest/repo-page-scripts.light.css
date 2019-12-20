@@ -16,6 +16,8 @@ body {
 html {
 	font-family: 'Questrial', sans-serif;
 	box-sizing: border-box;
+	width: 100vw;
+	overflow-x: hidden;
 }
 
 a {

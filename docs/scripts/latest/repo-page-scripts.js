@@ -201,15 +201,15 @@ function setRepoBody(repo, callback, error) {
 	//get repo first and then get first image
 	if (TestType !== 0) {
 		if (TestType === 3) {
-			continueSetRepoBody(getTestReadme(), callback);
+			continueSetRepoBody(repo, getTestReadme(), callback);
 		}
 	} else {
 		getStringP(getReadmeLink(repo.owner.login, repo.name), undefined, function(data, extraParam){
-			continueSetRepoBody(data, callback);
+			continueSetRepoBody(repo. data, callback);
 		}, function(errCode){
 			if (errCode == 404) {
 				getStringP(getReadmeLink2(repo.owner.login, repo.name), callback, function(data, extraParam){
-					continueSetRepoBody(data, extraParam);
+					continueSetRepoBody(repo, data, extraParam);
 				}, function(err){});  
 			} else {
 				error();
@@ -218,22 +218,42 @@ function setRepoBody(repo, callback, error) {
 	}
 }
 
-function continueSetRepoBody(readmeRaw, callback){
+function continueSetRepoBody(repo, readmeRaw, callback){
+	document.body.innerHTML += `<div class="container" id="container">
+		<div class="left-sidenav">			
+			<button class="left-sidenav-button" onclick="openRepoPage('Home', this)" id="defaultOpen">Home</button>`
+			
+			+ ( repo.has_downloads ? `<button class="left-sidenav-button" onclick="openRepoPage('Downloads', this)">Downloads</button>` : `` ) + 
+			
+			``
+			
+			+ ( repo.has_wiki ? `<button class="left-sidenav-button" onclick="openLink('https://github.com/Thecarisma/Cronux/wiki')">Wiki</button>` : `` ) + 
+			
+			`<button class="left-sidenav-button" onclick="">Wiki</button>
+			<button class="left-sidenav-button" onclick="openRepoPage('Contributors', this)">Contributors</button>
+			<button class="left-sidenav-button" onclick="openLink('${repo.html_url}')">Source</button>
+		</div>
+		
+		<div id="main-panel-view">
+			<div id="Home" class="tabcontent">
+				
+			</div>
+		</div>
+	</div>`;
 	var readMeLines = readmeRaw.split('\n');
 	for (var readMeLine of readMeLines) {
 		if (readMeLine.startsWith('#') && readMeLine.indexOf('</') < 0) {
 			var segment = readMeLine.split("#").join("").trim();
-			console.log(segment);
-			//add to side bar
+			//add to right side bar
 		}
 	}
 	//TODO: Extract frist image
 	var converter = new showdown.Converter();
 	converter.setOption('ghCompatibleHeaderId', true);
 	var html = converter.makeHtml(readmeRaw);
-	//document.writeln(html);
-	console.log(html);
+	document.getElementById('Home').innerHTML = (html);
 	callback();
+	document.getElementById('defaultOpen').click();
 }
 
 function setMeta(org) {
