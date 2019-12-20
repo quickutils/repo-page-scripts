@@ -81,8 +81,7 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 }
 
 function setRepoPageInfo(repo) {	
-	setRepoBody(repo, function() {
-		repo.avatar_url = repo.owner.avatar_url;
+	setRepoBody(repo, function(repo) {
 		setMeta(repo);
 		setTitle(repo);
 	}, function() {
@@ -256,8 +255,17 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 	var converter = new showdown.Converter();
 	converter.setOption('ghCompatibleHeaderId', true);
 	var html = converter.makeHtml(readmeRaw);
+	var imgLink = html.substr(html.indexOf('<img src="'), html.indexOf('<img src="') - html.indexOf(html.indexOf('<img src="'), '"'));
 	document.getElementById('Home').innerHTML = (html);
-	callback();
+	
+	var elem = document.createElement('div');
+	elem.innerHTML = readmeRaw.substr(0, 300);
+	if (elem.querySelector('img') != null) {
+		repo.avatar_url = elem.querySelector('img').src;
+	} else {
+		repo.avatar_url = repo.owner.avatar_url;
+	}
+	callback(repo);
 	document.getElementById('defaultOpen').click();
 }
 
