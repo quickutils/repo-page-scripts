@@ -221,21 +221,26 @@ function setRepoBody(repo, callback, error) {
 function continueSetRepoBody(repo, readmeRaw, callback){
 	document.body.innerHTML += `<div class="container" id="container">
 		<div class="left-sidenav">			
-			<button class="left-sidenav-button" onclick="openRepoPage('Home', this)" id="defaultOpen">Home</button>`
+			<a class="left-sidenav-a" onclick="openRepoPage('Home', this)" id="defaultOpen">Home</a>`
 			
-			+ ( repo.has_downloads ? `<button class="left-sidenav-button" onclick="openRepoPage('Downloads', this)">Downloads</button>` : `` ) + 
+			+ ( repo.has_downloads ? `<a class="left-sidenav-a" onclick="openRepoPage('Downloads', this)">Downloads</a>` : `` ) + 
 			
 			``
 			
-			+ ( repo.has_wiki ? `<button class="left-sidenav-button" onclick="openLink('https://github.com/Thecarisma/Cronux/wiki')">Wiki</button>` : `` ) + 
+			+ ( repo.has_wiki ? `<a class="left-sidenav-a" href="${repo.html_url}/wiki">Wiki</a>` : `` ) + 
 			
-			`<button class="left-sidenav-button" onclick="">Wiki</button>
-			<button class="left-sidenav-button" onclick="openRepoPage('Contributors', this)">Contributors</button>
-			<button class="left-sidenav-button" onclick="openLink('${repo.html_url}')">Source</button>
+			`<a class="left-sidenav-a" onclick="openRepoPage('Contributors', this)">Contributors</a>
+			<a class="left-sidenav-a" href="${repo.html_url}">Source</a>
 		</div>
 		
 		<div id="main-panel-view">
 			<div id="Home" class="tabcontent">
+				
+			</div>
+			<div id="Downloads" class="tabcontent">
+				
+			</div>
+			<div id="Contributors" class="tabcontent">
 				
 			</div>
 		</div>
@@ -442,7 +447,7 @@ function openRepoPage(pageName,elmnt) {
 	for (i = 0; i < tabcontent.length; i++) {
 		tabcontent[i].style.display = "none";
 	}
-	tablinks = document.getElementsByClassName("left-sidenav-button");
+	tablinks = document.getElementsByClassName("left-sidenav-a");
 	for (i = 0; i < tablinks.length; i++) {
 		tablinks[i].style.backgroundColor = "";
 		tablinks[i].style.color = "black";
