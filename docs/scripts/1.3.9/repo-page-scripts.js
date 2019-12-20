@@ -83,7 +83,7 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 function setRepoPageInfo(repo) {	
 	setRepoBody(repo, function(repo) {
 		setMeta(repo);
-		setTitle(repo);
+		//setTitle(repo);
 	}, function() {
 		
 	});
@@ -244,20 +244,6 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 			</div>
 		</div>
 	</div>`;
-	var readMeLines = readmeRaw.split('\n');
-	for (var readMeLine of readMeLines) {
-		if (readMeLine.startsWith('#') && readMeLine.indexOf('</') < 0) {
-			var segment = readMeLine.split("#").join("").trim();
-			//add to right side bar
-		}
-	}
-	//TODO: Extract frist image
-	var converter = new showdown.Converter();
-	converter.setOption('ghCompatibleHeaderId', true);
-	var html = converter.makeHtml(readmeRaw);
-	var imgLink = html.substr(html.indexOf('<img src="'), html.indexOf('<img src="') - html.indexOf(html.indexOf('<img src="'), '"'));
-	document.getElementById('Home').innerHTML = (html);
-	
 	var elem = document.createElement('div');
 	elem.innerHTML = readmeRaw.substr(0, 300);
 	if (elem.querySelector('img') != null) {
@@ -265,6 +251,19 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 	} else {
 		repo.avatar_url = repo.owner.avatar_url;
 	}
+	var readMeLines = readmeRaw.split('\n');
+	for (var readMeLine of readMeLines) {
+		if (readMeLine.startsWith('#') && readMeLine.indexOf('</') < 0) {
+			var segment = readMeLine.split("#").join("").trim();
+			//add to right side bar
+		}
+	}
+	var converter = new showdown.Converter();
+	converter.setOption('ghCompatibleHeaderId', true);
+	var html = converter.makeHtml(readmeRaw);
+	var imgLink = html.substr(html.indexOf('<img src="'), html.indexOf('<img src="') - html.indexOf(html.indexOf('<img src="'), '"'));
+	document.getElementById('Home').innerHTML = (html);
+	
 	callback(repo);
 	document.getElementById('defaultOpen').click();
 }
