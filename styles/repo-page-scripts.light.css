@@ -258,6 +258,7 @@ pre {
 	overflow-x: hidden;
 	padding-top: 20px;
 	margin-left: 1%;
+	position: fixed;
 }
 
 .left-sidenav a {
