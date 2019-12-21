@@ -20,6 +20,8 @@ var ShowForked = (typeof ShowForked === "undefined" ? false : ShowForked );
 var LoadedOrgs = false;
 var LoadedGists = false;
 var LoadedAllRepos = false;
+var LoadedDownloads = false;
+var LoadedContributors = false;
 var Started = false;
 
 loadScript("https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js", function() {
@@ -222,7 +224,7 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 		<div class="left-sidenav">			
 			<a class="left-sidenav-a" onclick="openRepoPage('Home', this)" id="defaultOpen">Home</a>`
 			
-			+ ( repo.has_downloads ? `<a class="left-sidenav-a" onclick="openRepoPage('Downloads', this)">Downloads</a>` : `` ) + 
+			+ ( repo.has_downloads ? `<a class="left-sidenav-a" onclick="openReleasePage(this, '${repo.downloads_url}')">Releases</a>` : `` ) + 
 			
 			``
 			
@@ -236,7 +238,7 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 			<div id="Home" class="tabcontent">
 				
 			</div>
-			<div id="Downloads" class="tabcontent">
+			<div id="Releases" class="tabcontent">
 				
 			</div>
 			<div id="Contributors" class="tabcontent">
@@ -263,7 +265,7 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 	var html = converter.makeHtml(readmeRaw);
 	var imgLink = html.substr(html.indexOf('<img src="'), html.indexOf('<img src="') - html.indexOf(html.indexOf('<img src="'), '"'));
 	document.getElementById('Home').innerHTML = (html);
-	console.log(html);
+	//console.log(html);
 	
 	callback(repo);
 	document.getElementById('defaultOpen').click();
@@ -447,6 +449,26 @@ function openPage(pageName,elmnt) {
 	document.getElementById(pageName).style.display = "block";
 	elmnt.style.backgroundColor = '#ededed';
 	elmnt.style.border = '1px solid #ebeae8';
+}
+
+function openReleasePage(elmnt, apiEndpoint) {
+	openRepoPage('Releases', elmnt);
+	if (LoadedDownloads === false) {
+		if (TestType !== 0) {
+			if (TestType === 3) {
+				renderRepoReleases(getTestRepoReleases());
+			}
+			
+		} else {
+			getJSONP(apiEndpoint, function(data){
+				renderRepoReleases(data);
+			}, function(err){});  
+		}
+	}
+}
+
+function renderRepoReleases(downloads) {
+	
 }
 
 function openRepoPage(pageName,elmnt) {
