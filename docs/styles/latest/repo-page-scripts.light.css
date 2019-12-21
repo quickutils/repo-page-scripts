@@ -216,7 +216,20 @@ pre {
 	border:1px solid #339cf2;
 }
 
-* {box-sizing: border-box}
+.org-main .org-main-contributor {
+	margin: 10px;
+	background: white;
+	border:1px solid #ebeae8;
+	padding: 15px;
+	border-radius: 2%;
+	width: 300px;
+	text-decoration: none;
+	flex: 1 1 auto;
+}
+
+.org-main .org-main-contributor a {
+	color: black !important;
+}
 
 .tablink {
 	background-color: white;

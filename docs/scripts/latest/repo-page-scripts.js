@@ -20,7 +20,7 @@ var ShowForked = (typeof ShowForked === "undefined" ? false : ShowForked );
 var LoadedOrgs = false;
 var LoadedGists = false;
 var LoadedAllRepos = false;
-var LoadedDownloads = false;
+var LoadedReleases = false;
 var LoadedContributors = false;
 var Started = false;
 
@@ -230,7 +230,7 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 			
 			+ ( repo.has_wiki ? `<a class="left-sidenav-a" href="${repo.html_url}/wiki">Wiki</a>` : `` ) + 
 			
-			`<a class="left-sidenav-a" href="#" onclick="openReleasePage(this, '${repo.downloads_url}')">Contributors</a>
+			`<a class="left-sidenav-a" href="#" onclick="openContributorsPage(this, '${repo.contributors_url}')">Contributors</a>
 			<a class="left-sidenav-a" href="${repo.owner.html_url}">Author</a>
 			<a class="left-sidenav-a" href="${repo.html_url}">Source</a>
 		</div>
@@ -243,7 +243,8 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 				
 			</div>
 			<div id="Contributors" class="tabcontent">
-				
+				<div class="org-main" id="org-main-contibutors">
+				</div>
 			</div>
 		</div>
 	</div>`;
@@ -454,7 +455,7 @@ function openPage(pageName,elmnt) {
 
 function openReleasePage(elmnt, apiEndpoint) {
 	openRepoPage('Releases', elmnt);
-	if (LoadedDownloads === false) {
+	if (LoadedReleases === false) {
 		if (TestType !== 0) {
 			if (TestType === 3) {
 				renderRepoReleases(getTestRepoReleases());
@@ -470,6 +471,39 @@ function openReleasePage(elmnt, apiEndpoint) {
 
 function renderRepoReleases(downloads) {
 	
+}
+
+function openContributorsPage(elmnt, apiEndpoint) {
+	openRepoPage('Contributors', elmnt);
+	if (LoadedReleases === false) {
+		if (TestType !== 0) {
+			if (TestType === 3) {
+				renderRepoContributors(getTestRepoContributors());
+			}
+			
+		} else {
+			getJSONP(apiEndpoint, function(data){
+				renderRepoContributors(data);
+			}, function(err){});  
+		}
+	}
+}
+
+function renderRepoContributors(contributors) {
+	var div = document.getElementById('org-main-contibutors');
+	for (var contributor of contributors) {
+		var repoHTML = `
+			<div class="org-main-contributor">
+				<div class="org-title" id="org-title">
+					<br/><img id="org-title-image" class="circular_image" alt="${contributor.login}" src="${contributor.avatar_url}">
+					<br/><br/><a href="https://${contributor.login}.github.io/">${contributor.login}</a>
+					<!--<p>${contributor.contributions} Contributions</p>-->
+				</div>
+			</div>
+		`;
+		div.innerHTML += (repoHTML);
+	}
+	LoadedOrgs = true;
 }
 
 function openRepoPage(pageName,elmnt) {

@@ -5099,7 +5099,7 @@ function getTestRepoReleases() {
 	];
 }
 
-function getTestContributors() {
+function getTestRepoContributors() {
 	return [
 	  {
 		"login": "Thecarisma",
