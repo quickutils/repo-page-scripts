@@ -134,7 +134,7 @@ function setOrganizationBody(unSortedrepos) {
 					
 					`</p>`
 					
-					+ (repo.language ? `<i class="fa fa-circle color-${repo.language.replace(' ', '-').toLowerCase()}"></i> ${repo.language}` : `<i class="fa fa-circle"></i> None`) +
+					+ (repo.language ? `<i class="fa fa-circle color-${repo.language.toLowerCase().replace('+', 'p').replace("'", '').replace('#', 'sharp').replace('*', 'star').replace('!', 'not').replace(':', '').replace(' ', '-')}"></i> ${repo.language}` : `<i class="fa fa-circle"></i> None`) +
 					
 					`<stat> <i class="fa fa-star"></i> ${repo.stargazers_count}</stat>
 					<stat> <i class="fa fa-code-fork"></i> ${repo.forks_count}</stat>
