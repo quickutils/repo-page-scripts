@@ -86,6 +86,7 @@ function setRepoPageInfo(repo) {
 	setRepoBody(repo, function(repo) {
 		setMeta(repo);
 		setContributingGuide(repo);
+		setRoadmap(repo);
 		//setBodyTitle(repo);
 	}, function() {
 		
@@ -224,6 +225,31 @@ function continueSetContributingGuide(guideRaw) {
 	document.getElementById('Contributing-Guide').innerHTML = (new showdown.Converter().makeHtml(guideRaw));
 }
 
+function setRoadmap(repo) {
+	if (TestType !== 0) {
+		if (TestType === 3) {
+			continueSetRoadmap(getTestRoadmap());
+		}
+	} else {
+		getStringP(getReadmeLink(repo.owner.login, repo.name), undefined, function(data, extraParam){
+			continueSetRoadmap(data);
+		}, function(errCode){
+			if (errCode == 404) {
+				getStringP(getReadmeLink2(repo.owner.login, repo.name), callback, function(data, extraParam){
+					continueSetRoadmap(data);
+				}, function(err){});  
+			} else {
+				error();
+			}
+		});  
+	} 
+}
+
+function continueSetRoadmap(roadmapRaw) {
+	document.getElementById('left-sidenav').innerHTML += `<a class="left-sidenav-a" href="#" onclick="openRepoPage('Roadmap', this)" >Roadmap</a>` ;
+	document.getElementById('Contributing-Guide').innerHTML = (new showdown.Converter().makeHtml(roadmapRaw));
+}
+
 function setRepoBody(repo, callback, error) {
 	if (TestType !== 0) {
 		if (TestType === 3) {
@@ -274,6 +300,9 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 				</div>
 			</div>
 			<div id="Contributing-Guide" class="tabcontent">
+				
+			</div>
+			<div id="Roadmap" class="tabcontent">
 				
 			</div>
 		</div>
