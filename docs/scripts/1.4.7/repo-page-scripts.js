@@ -277,12 +277,12 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 			
 			+ ( repo.has_downloads ? `<a class="left-sidenav-a" href="#" onclick="openReleasePage(this, '${repo.releases_url.split('{')[0]}')">Releases</a>` : `` ) + 
 			
-			``
+			`<a class="left-sidenav-a" href="#" onclick="openContributorsPage(this, '${repo.contributors_url}')">Contributors</a>
+			`
 			
 			+ ( repo.has_wiki ? `<a class="left-sidenav-a" href="${repo.html_url}/wiki">Wiki</a>` : `` ) + 
 			
-			`<a class="left-sidenav-a" href="#" onclick="openContributorsPage(this, '${repo.contributors_url}')">Contributors</a>
-			<a class="left-sidenav-a" href="https://${repo.owner.login}.github.io/">Author</a>
+			`<a class="left-sidenav-a" href="https://${repo.owner.login}.github.io/">Author</a>
 			<a class="left-sidenav-a" href="${repo.html_url}">Source</a>
 		</div>
 		
