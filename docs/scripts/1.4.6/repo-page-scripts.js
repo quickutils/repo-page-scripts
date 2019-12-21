@@ -247,7 +247,7 @@ function setRoadmap(repo) {
 
 function continueSetRoadmap(roadmapRaw) {
 	document.getElementById('left-sidenav').innerHTML += `<a class="left-sidenav-a" href="#" onclick="openRepoPage('Roadmap', this)" >Roadmap</a>` ;
-	document.getElementById('Roadmap').innerHTML = (new showdown.Converter().makeHtml(roadmapRaw));
+	document.getElementById('Roadmap').innerHTML = (new showdown.Converter().makeHtml(roadmapRaw).split("[ ]").join(`<input type="checkbox" disabled="disabled">`).split("[x]").join(`<input type="checkbox" disabled="disabled" checked="checked">`));
 }
 
 function setRepoBody(repo, callback, error) {
