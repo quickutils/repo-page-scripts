@@ -272,12 +272,16 @@ pre {
 }
 
 .left-sidenav a:hover {
-	color: black;
+	color: grey !important;
 	cursor: hand !important;
 }
 
 .left-sidenav-a {
 	cursor: hand !important;
+}
+
+.left-sidenav-a:hover {
+	color: grey;
 }
 
 .right-sidenav {

@@ -222,15 +222,16 @@ function setRepoBody(repo, callback, error) {
 function continueSetRepoBody(repo, readmeRaw, callback){
 	document.body.innerHTML += `<div class="container" id="container">
 		<div class="left-sidenav">			
-			<a class="left-sidenav-a" onclick="openRepoPage('Home', this)" id="defaultOpen">Home</a>`
+			<a class="left-sidenav-a" href="#" onclick="openRepoPage('Home', this)" id="defaultOpen">Home</a>`
 			
-			+ ( repo.has_downloads ? `<a class="left-sidenav-a" onclick="openReleasePage(this, '${repo.downloads_url}')">Releases</a>` : `` ) + 
+			+ ( repo.has_downloads ? `<a class="left-sidenav-a" href="#" onclick="openReleasePage(this, '${repo.downloads_url}')">Releases</a>` : `` ) + 
 			
 			``
 			
 			+ ( repo.has_wiki ? `<a class="left-sidenav-a" href="${repo.html_url}/wiki">Wiki</a>` : `` ) + 
 			
-			`<a class="left-sidenav-a" onclick="openRepoPage('Contributors', this)">Contributors</a>
+			`<a class="left-sidenav-a" href="#" onclick="openReleasePage(this, '${repo.downloads_url}')">Contributors</a>
+			<a class="left-sidenav-a" href="${repo.owner.html_url}">Author</a>
 			<a class="left-sidenav-a" href="${repo.html_url}">Source</a>
 		</div>
 		
