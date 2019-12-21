@@ -231,11 +231,11 @@ function setRoadmap(repo) {
 			continueSetRoadmap(getTestRoadmap());
 		}
 	} else {
-		getStringP(getReadmeLink(repo.owner.login, repo.name), undefined, function(data, extraParam){
+		getStringP(getRoadmapLink(repo.owner.login, repo.name), undefined, function(data, extraParam){
 			continueSetRoadmap(data);
 		}, function(errCode){
 			if (errCode == 404) {
-				getStringP(getReadmeLink2(repo.owner.login, repo.name), undefined, function(data, extraParam){
+				getStringP(getRoadmapLink2(repo.owner.login, repo.name), undefined, function(data, extraParam){
 					continueSetRoadmap(data);
 				}, function(err){});  
 			} else {
