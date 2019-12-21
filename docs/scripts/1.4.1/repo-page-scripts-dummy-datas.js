@@ -3952,6 +3952,10 @@ ___
 - [Support](#support)
 - [License](#license)
 
+<pre><code class="language-java">
+   String str = "Hello Worlkd";
+</code></pre>
+
 ### Prerequisite
 
 This command is exclusive to windows OS, so you need any version of Windows OS after Windows XP. Some of the command 
@@ -4052,7 +4056,10 @@ chelp [command]
 
 All the command are listed below with it alias(es)
 
-` + '`' + `` + '`' + `` + '`' + `bash
+` + '`' + `` + '`' + `` + '`' + `java
+/**
+	A comment
+**/
 clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, removecommand, 
 cinstall, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv, delenv, close, 
 cat, printfile, ssay, say, testlabel, compilescript, cbackup, backup, chelp, addpath, setenvf, 

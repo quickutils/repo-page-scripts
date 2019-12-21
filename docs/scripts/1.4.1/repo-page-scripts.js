@@ -83,7 +83,7 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 function setRepoPageInfo(repo) {	
 	setRepoBody(repo, function(repo) {
 		setMeta(repo);
-		//setTitle(repo);
+		//setBodyTitle(repo);
 	}, function() {
 		
 	});
@@ -91,7 +91,7 @@ function setRepoPageInfo(repo) {
 
 function setOrganizationOrProfileInfo(org) {
 	setMeta(org);
-	setTitle(org);
+	setBodyTitle(org);
 	getOrganizationOrProfileRepos(org);
 }
 
@@ -270,6 +270,7 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 }
 
 function setMeta(org) {
+	document.title = org.name ;
 	if (org.avatar_url) setIcon(org.avatar_url);
 	var meta = document.createElement('meta');
 	meta.name = "description";
@@ -292,8 +293,7 @@ function setMeta(org) {
 	document.getElementsByTagName('head')[0].appendChild(meta);
 }
 
-function setTitle(org) {
-	document.title = org.name ;
+function setBodyTitle(org) {
 	var titleDivContent = `
 		<br/><img id="org-title-image" class="circular_image" alt="${org.description}" src="${org.avatar_url}">
 		<br/><br/><a href="${org.html_url}"><span id="org-title-title" >${org.name}</span></a>
