@@ -282,7 +282,7 @@ pre {
 
 #main-panel-view {
 	height: 100%;
-	margin-left: 11%;
+	margin-left: 15%;
 	padding: 6px 8px 6px 16px;
 }
 
@@ -290,7 +290,7 @@ pre {
 	height: 100%;
 	left: 0;
 	float: left;
-	width: 10%;
+	width: 15%;
 	overflow-x: hidden;
 	padding-top: 20px;
 	margin-left: 1%;

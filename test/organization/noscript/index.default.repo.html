@@ -14,13 +14,14 @@
 </head>
 <body>
 	<div class="container" id="container" style="width:100%;">
-		<div class="left-sidenav">
+		<div class="left-sidenav" id="left-sidenav">
 			<a class="left-sidenav-a" onclick="openRepoPage('Home', this)" id="defaultOpen">Home</a>
 			<a class="left-sidenav-a" onclick="openRepoPage('Releases', this)">Releases</a>
 			<a class="left-sidenav-a" onclick="openLink('https://github.com/Thecarisma/Cronux/wiki')">Wiki</a>
 			<a class="left-sidenav-a" onclick="openRepoPage('Contributors', this)">Contributors</a>
 			<a class="left-sidenav-a" onclick="openLink('https://github.com/Thecarisma')">Author</a>
 			<a class="left-sidenav-a" onclick="openLink('https://github.com/Thecarisma')">Source</a>
+			<a class="left-sidenav-a" onclick="openRepoPage('Contributing-Guide', this)">Contributing Guide</a>
 			
 			
 		</div>
@@ -274,6 +275,132 @@ issue first it is closed immediately. <em>don't freaking touch it if you don't u
 					</div>
 				</div>
 			</div>
+			<div id="Contributing-Guide" class="tabcontent">
+				<h1 id="p-styletext-align-center-aligncentercronuxp"><p style="text-align: center;" align="center">Cronux</p></h1>
+<p style="text-align: center;" align="center">Super useful handy, hacky and wacky commands to perform simple and complex task on the Windows command line</p>
+<pre><code>
+</code></pre>
+<hr /><p>This repo contains Super useful handy commands to perform simple and complex task on the Windows command line. Most Linux systems comes 
+pre-installed with useful utilities and programs which makes working with the terminal easy, fun and provides easy api to execute 
+various task. Windows even has more powerful command line functionality but requires journey to the abysses to use, windows 
+provide powerful api through the visual basic script, powershell and the .NET sdk. </p>
+<p>Cronux simplify the use of the windows command line functionality by combining the use of visual basic script, powershell and .NET sdk 
+to execute command to perform operations. It makes heavey use of meta-programming to achive some functionalities.</p>
+<p>This script is most useful if you enjoy the power of linux and unix terminal or you switch between other OS and Windows often.</p>
+<p>If you think the scripts in this project are not useful you can move your <strong><em><em></em></strong><strong></em></strong>ed ** <strong><em></strong></em>s off this project page but before 
+you go kindly star the project :wink:</p>
+<hr />
+<h2 id="table-of-content">Table of content</h2>
+<ul>
+<li><a href="#prerequisite">Prerequisite</a></li>
+<li><a href="#installation">Installation</a><ul>
+<li><a href="#install">Install</a></li>
+<li><a href="#uninstall">Uninstall</a></li></ul></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#available-commands">Available Commands</a></li>
+<li><a href="#drawbacks-and-safety">Drawbacks And Safety</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#support">Support</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<h3 id="prerequisite">Prerequisite</h3>
+<p>This command is exclusive to windows OS, so you need any version of Windows OS after Windows XP. Some of the command 
+requires the app to be present but that only affect the commands. The app needed is the name of the sub folder in the commands 
+folder.</p>
+<h3 id="installation">Installation</h3>
+<p>The script is completely independent as it relies on Windows OS api and infrastructure all the logic is native to the platform. 
+To install the script just download from the <a href="https://github.com/Thecarisma/Cronux/releases">release</a>. </p>
+<h4 id="install">Install</h4>
+<p>If you have git bash installed use the one line command below to install cronux </p>
+<pre><code class="bash language-bash">git clone https://github.com/Thecarisma/Cronux.git &amp;&amp; cd ./Cronux &amp;&amp; ./Cronux.bat install prod
+</code></pre>
+<p>To use all the commands you will need to prefix the word <strong>Cronux</strong> before the command e.g <code>Cronux clear</code>, <code>Cronux sudo</code> e.t.c to make the 
+command available independent of Cronux itself install the commands with</p>
+<pre><code>Cronux install
+</code></pre>
+<p>All the commands will be installed in the Program files folder <code>C:Program FilesCronux</code> and the folder will be added to path. The command 
+can then be executed without prefixing <strong>Cronux</strong> e.g.</p>
+<pre><code>clear
+elevate 
+echocolor
+...
+</code></pre>
+<p>If you want Cronux to be available in your system path use the command below to add the folder into the <strong>PATH</strong> variable.
+You should only add Cronux directory to path if you did not install it. </p>
+<pre><code class="bash language-bash">Cronux addtopath ./
+</code></pre>
+<p>The addpath converts path to absolute windows compatible short pathname.</p>
+<h4 id="uninstall">Uninstall</h4>
+<p>To uninstall the Entrie Cronux and it sub commands Scripts use the command below</p>
+<pre><code>Cronux uninstall all
+</code></pre>
+<p>To remove a single command for example when an actual program with the same full functionality 
+has been installed e.g the <strong>ls</strong> command which mimics  the windows <strong>dir.exe</strong> program
+should be removed when the real program <strong>ls.exe</strong> is installed (e.g from the mingwn compiler toolchain). </p>
+<pre><code>Cronux removecommand ls
+</code></pre>
+<h3 id="usage">Usage</h3>
+<p>After installation you can use the commands independently as each batch script 
+will be generated for each command. Note that not all the command will have it 
+own script such as the <strong>dir</strong> command as it will conflict with the installed dir program 
+that comes pre-installed with windows.</p>
+<p>E.g to open notepad as administrator</p>
+<pre><code class="bash language-bash">elevate notepad
+</code></pre>
+<p>If you do not choose to install Cronux.bat use below to execute commands from any folder. 
+To use, extract Cronux.bat to a folder of your choice, a sample use to open cmd as administrator</p>
+<pre><code class="bash language-bash">Cronux elevate cmd
+</code></pre>
+<p>Note that custom advertisment, hint or quote is shown when command is run to silent the quote add the 
+command <code>nb</code> to your command argument at any point</p>
+<h3 id="available-commands">Available Commands</h3>
+<p>To view the detail help message for each commands </p>
+<pre><code class="bash language-bash">Cronux help [command]
+</code></pre>
+<p>or if Cronux is installed</p>
+<pre><code class="bash language-bash">chelp [command]
+</code></pre>
+<p>All the command are listed below with it alias(es)</p>
+<pre><code class="bash language-bash">clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, removecommand, 
+cinstall, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv, delenv, close, 
+cat, printfile, ssay, say, testlabel, compilescript, cbackup, backup, chelp, addpath, setenvf, 
+delpath, zip, archive, unzip, extract, listzip, showzip, qproc, qport, qid, p, $, ckubeget, 
+gitlogp, ckubeddel, ckubedel, ckubedget, ckubeget, ckubelogs, ckubelogsf, createdircontext, 
+createdirbgcontext, createfilecontext, createdesktopcontext, gen.
+</code></pre>
+<h3 id="drawbacks-and-safety">Drawbacks And Safety</h3>
+<p>The commands are not full programs and might not behave as expected completely. Also the command that comes with Cronux 
+should be remove after the actual program has been installed.</p>
+<p>Most of the operation requires a lot of care as it can damage the system in some instance e.g such as the entire 
+environment variable commands. Executing such command in Cronux will first backup sensitive and important files to it 
+backup folder before executing the commands. If the command causes un foreseen damages the backed up files can be used to 
+revert back to previous environment. Below are neccesary format for backups.</p>
+<p><code>bash
+ROAMING_FOLDER=%HOMEDRIVE%%HOMEPATH%AppDataRoamingCronuxBACKUP_FOLDER=%HOMEDRIVE%%HOMEPATH%AppDataRoamingCronuxackupBACKUP_ENVIRONMENT_FOLDER=%HOMEDRIVE%%HOMEPATH%AppDataRoamingCronuxenvironment</code>
+ROAMING<em>FOLDER: The Cronux roaming folder for backup, configuration and other datas.
+BACKUP</em>FOLDER: This is the main folder where a file is backed up in the following format before deletion <code>!BACKUP_FOLDER!!filename!!fileextension!.!time_stamp!</code>.cronux.backup
+BACKUP<em>ENVIRONMENT</em>FOLDER: The environment variables is backed up in this folder before manipulating it.</p>
+<h3 id="contributing">Contributing</h3>
+<p>Before you begin contribution please read the contribution guide at <a href="./CONTRIBUTING.MD">CONTRIBUTING GUIDE</a></p>
+<p>If you have any issue or you just want more command to be added you can file a request <a href="https://github.com/Thecarisma/Cronux/issues/new">issue</a> 
+anytime and if you just add a more interesting, fun and usefull command do not hesitate to send a 
+<a href="https://github.com/Thecarisma/Cronux/compare">pull request</a> </p>
+<p>Please and please and please and please do not modify the <em>CronuxTestRunner.bat</em> Script if you do not understand how 
+it works. <em>do not touch it. it freaking works</em>, but if you think the scripts should pass a test raise an issue for 
+it before sending a PR for modified <em>CronuxTestRunner.bat</em>. if a PR modified <em>CronuxTestRunner.bat</em> without opening an 
+issue first it is closed immediately. <em>don't freaking touch it if you don't understand it</em>.</p>
+<p>May the force be with you.</p>
+<h2 id="support">Support</h2>
+<p>You can support some of this community as they make big impact in the developement of people to get started with software engineering and open source.</p>
+<ul>
+<li>https://www.patreon.com/devcareer</li>
+<li>https://opencollective.com/osca</li>
+</ul>
+<p>Or if you want to buy me a drink &gt; https://patreon.com/thecarisma. Thanks!ðŸ¤—</p>
+<h3 id="license">License</h3>
+<p>The MIT License Copyright (c) 2019 Adewale Azeez Built with :heart:</p>
+			</div>
+			
 		</div>
 		
 		

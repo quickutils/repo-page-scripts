@@ -85,6 +85,7 @@ function getOrganizationProfileInfo(apiEndpoint, name) {
 function setRepoPageInfo(repo) {	
 	setRepoBody(repo, function(repo) {
 		setMeta(repo);
+		setContributingGuide(repo);
 		//setBodyTitle(repo);
 	}, function() {
 		
@@ -198,15 +199,39 @@ function setProfileBody(org, unSortedrepos) {
 	});
 }
 
+function setContributingGuide(repo) {
+	if (TestType !== 0) {
+		if (TestType === 3) {
+			continueSetContributingGuide(getTestContributingGuide());
+		}
+	} else {
+		getStringP(getContributingLink(repo.owner.login, repo.name), undefined, function(data, extraParam){
+			continueSetContributingGuide(data);
+		}, function(errCode){
+			if (errCode == 404) {
+				getStringP(getContributingLink2(repo.owner.login, repo.name), callback, function(data, extraParam){
+					continueSetContributingGuide(data);
+				}, function(err){});  
+			} else {
+				error();
+			}
+		});  
+	} 
+}
+
+function continueSetContributingGuide(guideRaw) {
+	document.getElementById('left-sidenav').innerHTML += `<a class="left-sidenav-a" href="#" onclick="openRepoPage('Contributing-Guide', this)" >Contributing Guide</a>` ;
+	document.getElementById('Contributing-Guide').innerHTML = (new showdown.Converter().makeHtml(guideRaw));
+}
+
 function setRepoBody(repo, callback, error) {
-	//get repo first and then get first image
 	if (TestType !== 0) {
 		if (TestType === 3) {
 			continueSetRepoBody(repo, getTestReadme(), callback);
 		}
 	} else {
-		getStringP(getReadmeLink(repo.owner.login, repo.name), undefined, function(data, extraParam){
-			continueSetRepoBody(repo, data, callback);
+		getStringP(getReadmeLink(repo.owner.login, repo.name), callback, function(data, extraParam){
+			continueSetRepoBody(repo, data, extraParam);
 		}, function(errCode){
 			if (errCode == 404) {
 				getStringP(getReadmeLink2(repo.owner.login, repo.name), callback, function(data, extraParam){
@@ -221,7 +246,7 @@ function setRepoBody(repo, callback, error) {
 
 function continueSetRepoBody(repo, readmeRaw, callback){
 	document.body.innerHTML += `<div class="container" id="container">
-		<div class="left-sidenav">			
+		<div class="left-sidenav" id="left-sidenav">			
 			<a class="left-sidenav-a" href="#" onclick="openRepoPage('Home', this)" id="defaultOpen">Home</a>`
 			
 			+ ( repo.has_downloads ? `<a class="left-sidenav-a" href="#" onclick="openReleasePage(this, '${repo.releases_url.split('{')[0]}')">Releases</a>` : `` ) + 
@@ -247,6 +272,9 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 			<div id="Contributors" class="tabcontent">
 				<div class="org-main" id="org-main-contibutors">
 				</div>
+			</div>
+			<div id="Contributing-Guide" class="tabcontent">
+				
 			</div>
 		</div>
 	</div>`;
@@ -556,12 +584,26 @@ function sortByStarCount(unsortedRepo, callback) {
 
 function getReadmeLink(repoOwnerName, repoName) {
 	return `https://raw.githubusercontent.com/${repoOwnerName}/${repoName}/master/README.md`;
-	return repoHtmlLink + "/blob/master/README.md";
 }
 
 function getReadmeLink2(repoOwnerName, repoName) {
 	return `https://raw.githubusercontent.com/${repoOwnerName}/${repoName}/master/README.MD`;
-	return repoHtmlLink + "/blob/master/README.md";
+}
+
+function getContributingLink(repoOwnerName, repoName) {
+	return `https://raw.githubusercontent.com/${repoOwnerName}/${repoName}/master/CONTRIBUTING.md`;
+}
+
+function getContributingLink2(repoOwnerName, repoName) {
+	return `https://raw.githubusercontent.com/${repoOwnerName}/${repoName}/master/CONTRIBUTING.MD`;
+}
+
+function getRoadmapLink(repoOwnerName, repoName) {
+	return `https://raw.githubusercontent.com/${repoOwnerName}/${repoName}/master/ROADMAP.md`;
+}
+
+function getRoadmapLink2(repoOwnerName, repoName) {
+	return `https://raw.githubusercontent.com/${repoOwnerName}/${repoName}/master/ROADMAP.MD`;
 }
 
 function loadScript(url, callback) {
