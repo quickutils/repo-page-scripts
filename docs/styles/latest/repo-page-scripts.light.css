@@ -273,6 +273,7 @@ pre {
 
 .left-sidenav a:hover {
 	color: black;
+	cursor: hand !important;
 }
 
 .left-sidenav-a {
