@@ -210,7 +210,7 @@ function setContributingGuide(repo) {
 			continueSetContributingGuide(data);
 		}, function(errCode){
 			if (errCode == 404) {
-				getStringP(getContributingLink2(repo.owner.login, repo.name), callback, function(data, extraParam){
+				getStringP(getContributingLink2(repo.owner.login, repo.name), undefined, function(data, extraParam){
 					continueSetContributingGuide(data);
 				}, function(err){});  
 			} else {
@@ -235,7 +235,7 @@ function setRoadmap(repo) {
 			continueSetRoadmap(data);
 		}, function(errCode){
 			if (errCode == 404) {
-				getStringP(getReadmeLink2(repo.owner.login, repo.name), callback, function(data, extraParam){
+				getStringP(getReadmeLink2(repo.owner.login, repo.name), undefined, function(data, extraParam){
 					continueSetRoadmap(data);
 				}, function(err){});  
 			} else {
