@@ -275,6 +275,10 @@ pre {
 	color: black;
 }
 
+.left-sidenav-a {
+	cursor: hand !important;
+}
+
 .right-sidenav {
 	height: 100vh;
 	left: 0;
