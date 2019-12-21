@@ -475,6 +475,8 @@ function renderRepoReleases(downloads) {
 	var div = document.getElementById('org-main-releases');
 	for (var download of downloads) {
 		var donwloadCount = 0;
+		if (download.name == null) download.name = download.tag_name;
+		if (download.body == null) download.body = download.name;
 		var html = `
 			<div class="org-main-release">
 				<div class="org-title" id="org-title">
