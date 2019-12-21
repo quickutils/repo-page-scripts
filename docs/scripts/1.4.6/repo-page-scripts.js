@@ -247,7 +247,7 @@ function setRoadmap(repo) {
 
 function continueSetRoadmap(roadmapRaw) {
 	document.getElementById('left-sidenav').innerHTML += `<a class="left-sidenav-a" href="#" onclick="openRepoPage('Roadmap', this)" >Roadmap</a>` ;
-	document.getElementById('Contributing-Guide').innerHTML = (new showdown.Converter().makeHtml(roadmapRaw));
+	document.getElementById('Roadmap').innerHTML = (new showdown.Converter().makeHtml(roadmapRaw));
 }
 
 function setRepoBody(repo, callback, error) {
