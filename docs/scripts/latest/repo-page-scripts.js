@@ -204,7 +204,7 @@ function setRepoBody(repo, callback, error) {
 		}
 	} else {
 		getStringP(getReadmeLink(repo.owner.login, repo.name), undefined, function(data, extraParam){
-			continueSetRepoBody(repo. data, callback);
+			continueSetRepoBody(repo, data, callback);
 		}, function(errCode){
 			if (errCode == 404) {
 				getStringP(getReadmeLink2(repo.owner.login, repo.name), callback, function(data, extraParam){
