@@ -224,7 +224,7 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 		<div class="left-sidenav">			
 			<a class="left-sidenav-a" href="#" onclick="openRepoPage('Home', this)" id="defaultOpen">Home</a>`
 			
-			+ ( repo.has_downloads ? `<a class="left-sidenav-a" href="#" onclick="openReleasePage(this, '${repo.downloads_url}')">Releases</a>` : `` ) + 
+			+ ( repo.has_downloads ? `<a class="left-sidenav-a" href="#" onclick="openReleasePage(this, '${repo.releases_url}')">Releases</a>` : `` ) + 
 			
 			``
 			
