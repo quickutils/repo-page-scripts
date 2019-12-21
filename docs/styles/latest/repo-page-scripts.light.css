@@ -231,6 +231,29 @@ pre {
 	color: black !important;
 }
 
+.org-main .org-main-release {
+	margin: 10px;
+	background: white;
+	border:1px solid #ebeae8;
+	padding: 15px;
+	border-radius: 2%;
+	width: 100%;
+	text-decoration: none;
+	flex: 1 1 auto;
+}
+
+.org-main .org-main-release a {
+	color: #279bd9 !important;
+	font-weight: bold;
+}
+
+.org-main-release-asset {
+	border:1px solid #ebeae8;
+	padding: 5px;
+	border-radius: 5%;
+	width: 100% !important;
+}
+
 .tablink {
 	background-color: white;
 	float: left;

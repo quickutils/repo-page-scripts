@@ -240,7 +240,9 @@ function continueSetRepoBody(repo, readmeRaw, callback){
 				
 			</div>
 			<div id="Releases" class="tabcontent">
+				<div class="org-main" id="org-main-releases">
 				
+				</div>
 			</div>
 			<div id="Contributors" class="tabcontent">
 				<div class="org-main" id="org-main-contibutors">
@@ -470,12 +472,37 @@ function openReleasePage(elmnt, apiEndpoint) {
 }
 
 function renderRepoReleases(downloads) {
-	
+	var div = document.getElementById('org-main-releases');
+	for (var download of downloads) {
+		var donwloadCount = 0;
+		var html = `
+			<div class="org-main-release">
+				<div class="org-title" id="org-title">
+					<a href="${download.html_url}"><span id="org-title-title">${download.name}</span></a>
+					<p style="font-size:12px;">Released on ` + (new Date(download.published_at)) + `</p>
+				</div>
+				<p>` + (new showdown.Converter().makeHtml(download.body)) + `</p>`
+				
+				for (var asset of download.assets) {
+					html += `
+						<div class="org-main-release-asset">
+							<a href="${asset.browser_download_url}">${asset.name}</a> <span style="float:right;">${formatBytes(asset.size, 2)}</span>
+						</div>
+					`;
+					donwloadCount += asset.download_count;
+				}
+				
+			html +=	`<div style="padding-top:10px;"> Total Download: ${donwloadCount}</div>
+			</div>
+		`;
+		div.innerHTML += (html);
+	}
+	LoadedReleases = true;
 }
 
 function openContributorsPage(elmnt, apiEndpoint) {
 	openRepoPage('Contributors', elmnt);
-	if (LoadedReleases === false) {
+	if (LoadedContributors === false) {
 		if (TestType !== 0) {
 			if (TestType === 3) {
 				renderRepoContributors(getTestRepoContributors());
@@ -503,7 +530,7 @@ function renderRepoContributors(contributors) {
 		`;
 		div.innerHTML += (repoHTML);
 	}
-	LoadedOrgs = true;
+	LoadedContributors = true;
 }
 
 function openRepoPage(pageName,elmnt) {
@@ -552,6 +579,19 @@ function loadScript(url, callback) {
 
 function openLink(url) {
 	window.location = url; 
+}
+
+//https://stackoverflow.com/a/18650828/6626422
+function formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) return '0 Bytes';
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
 

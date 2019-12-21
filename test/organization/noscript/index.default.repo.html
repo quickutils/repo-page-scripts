@@ -16,7 +16,7 @@
 	<div class="container" id="container" style="width:100%;">
 		<div class="left-sidenav">
 			<a class="left-sidenav-a" onclick="openRepoPage('Home', this)" id="defaultOpen">Home</a>
-			<a class="left-sidenav-a" onclick="openRepoPage('Downloads', this)">Downloads</a>
+			<a class="left-sidenav-a" onclick="openRepoPage('Releases', this)">Releases</a>
 			<a class="left-sidenav-a" onclick="openLink('https://github.com/Thecarisma/Cronux/wiki')">Wiki</a>
 			<a class="left-sidenav-a" onclick="openRepoPage('Contributors', this)">Contributors</a>
 			<a class="left-sidenav-a" onclick="openLink('https://github.com/Thecarisma')">Author</a>
@@ -150,27 +150,67 @@ issue first it is closed immediately. <em>don't freaking touch it if you don't u
 <h3 id="license">License</h3>
 <p>The MIT License Copyright (c) 2019 Adewale Azeez Built with :heart:</p>
 			</div>
-			<div id="Downloads" class="tabcontent">
-				<div class="org-main" id="org-main-repos">
-					<div class="org-main-repo">
-						<i class="fa fa-book"></i>
-						<a href="https://github.com/Thecarisma"><span style="margin-left:5px;">repo-page-scripts</span></a>
+			<div id="Releases" class="tabcontent">
+				<div class="org-main" id="org-main-releases">
+					<div class="org-main-release">
+						<div class="org-title" id="org-title">
+							<a href="https://github.com/Thecarisma"><span id="org-title-title">repo-page-scripts</span></a>
+							<p style="font-size:12px;">Released on 2019-03-08T02:50:29Z</p>
+						</div>
 						<p>
-						Create your repository and organization web page using a single script. Just drop and deploy.
+						e8a91e3 - Azeez Adewale : first sensible and reasonable release
+						ac12e3f - Azeez Adewale : resolve some issue with inline execution
+						f52e7a8 - Azeez Adewale : resolve some issue with inline execution
+						33fd086 - Azeez Adewale : resolve some issue with inline execution
+						01af154 - Azeez Adewale : resolve some issue with inline execution
+						6d52d5e - Azeez Adewale : resolve some issue with inline execution
+						6b62dde - Azeez Adewale : resolve some issue with inline execution
+						ac47ae5 - Azeez Adewale : resolve some issue with inline execution
+						2508744 - Azeez Adewale : resolve some issue with inline execution
+						9b9474e - Azeez Adewale : resolve some issue with inline execution
+						ced4083 - Azeez Adewale : resolve some issue with inline execution
+						33c86a7 - Azeez Adewale : change the temp CronuxTestSource file to the .\build\ folder
+						5049fef - Azeez Adewale : change the temp CronuxTestSource file to the .\build\ folder
+						e819281 - Azeez Adewale : add travis CI/CD configuration to Cronux
+						b8d1578 - Azeez Adewale : add travis CI/CD configuration to Cronux
+						d81cdf7 - Azeez Adewale : add travis CI/CD configuration to Cronux
+						77aa580 - Azeez Adewale : add travis CI/CD configuration to Cronux
+						3e7ffc2 - Azeez Adewale : add command script to build zip and independent cronux file
+						f0ec420 - Azeez Adewale : resolve not finding command in command folder
+						ef7d852 - Azeez Adewale : allow sub folder iteration for compilation and installation
+						2c609ff - Azeez Adewale : modify existing script to add is_administrator variable and function
+						7946b45 - Azeez Adewale : add is_administrator function to check if command prompt is open as administrator
+						bfb961e - Azeez Adewale : add test to check if display function is used and defined
+						c86e8a0 - Azeez Adewale : add test to check :call_command_label is defined if used in the main script secgment
+						731d4d4 - Azeez Adewale : write label base loop for iterating commands folders and subfolders
+						6ea78de - Azeez Adewale : write label base loop for iterating commands folders and subfolders
+						eb5371c - Azeez Adewale : add test to check call_command_script label position
+						d913018 - Azeez Adewale : add more test cases, and magic items
+						b6bfbd3 - Azeez Adewale : make all new script pass test cases
+						29406cf - Azeez Adewale : make all new script pass test cases :devil:
+						9beae00 - Azeez Adewale : make all new script pass test cases :devil:
+						3f0781c - Azeez Adewale : did more batch sourcery and magic
+						4e39275 - Azeez Adewale : create the CronuxTestRunner script to run test on batch script
+						bebc97d - Azeez Adewale : create Contributing guide, close and sleep command, blah blah blah
 						</p>
-						<i class="fa fa-circle"></i> 1
-						<stat> <i class="fa fa-star"></i> 1</stat>
-						<stat> <i class="fa fa-code-fork"></i> 1</stat>
-					</div>
-					<div class="org-main-repo">
-						<i class="fa fa-book"></i>
-						<a href="https://github.com/Thecarisma"><span style="margin-left:5px;">repo-page-scripts</span></a>
-						<p>
-						Create your repository and organization web page using a single script. Just drop and deploy.
-						</p>
-						<i class="fa fa-circle"></i> 1
-						<stat> <i class="fa fa-star"></i> 1</stat>
-						<stat> <i class="fa fa-code-fork"></i> 1</stat>
+						
+						<div class="org-main-release-asset">
+							<a href="https://github.com/theratioproject/simple/releases/download/s0.4.0/simple0.4.0-linux_amd64.deb">simple0.4.0-linux_amd64.deb </a><span style="float:right;">(3764550/(1024*2)) MB</span>
+						</div>
+						<div class="org-main-release-asset">
+							<a href="https://github.com/theratioproject/simple/releases/download/s0.4.0/simple0.4.0-linux_amd64.deb">simple0.4.0-linux_amd64.deb </a><span style="float:right;">(3764550/(1024*2)) MB</span>
+						</div>
+						<div class="org-main-release-asset">
+							<a href="https://github.com/theratioproject/simple/releases/download/s0.4.0/simple0.4.0-linux_amd64.deb">simple0.4.0-linux_amd64.deb </a><span style="float:right;">(3764550/(1024*2)) MB</span>
+						</div>
+						<div class="org-main-release-asset">
+							<a href="https://github.com/theratioproject/simple/releases/download/s0.4.0/simple0.4.0-linux_amd64.deb">simple0.4.0-linux_amd64.deb </a><span style="float:right;">(3764550/(1024*2)) MB</span>
+						</div>
+						<div class="org-main-release-asset">
+							<a href="https://github.com/theratioproject/simple/releases/download/s0.4.0/simple0.4.0-linux_amd64.deb">simple0.4.0-linux_amd64.deb </a><span style="float:right;">(3764550/(1024*2)) MB</span>
+						</div>
+						
+						<div style="padding-top:10px;"> Total Download: 80</div>
 					</div>
 				</div>
 			</div>
@@ -231,30 +271,6 @@ issue first it is closed immediately. <em>don't freaking touch it if you don't u
 							<br/><br/><a href="https://github.com/Thecarisma"><span id="org-title-title">Thecarisma</span></a>
 							<p>5728 Contributions</p>
 						</div>
-					</div>
-				</div>
-			</div>
-			<div id="Support" class="tabcontent">
-				<div class="org-main" id="org-main-repos">
-					<div class="org-main-repo">
-						<i class="fa fa-book"></i>
-						<a href="https://github.com/Thecarisma"><span style="margin-left:5px;">repo-page-scripts</span></a>
-						<p>
-						Create your repository and organization web page using a single script. Just drop and deploy.
-						</p>
-						<i class="fa fa-circle"></i> 1
-						<stat> <i class="fa fa-star"></i> 1</stat>
-						<stat> <i class="fa fa-code-fork"></i> 1</stat>
-					</div>
-					<div class="org-main-repo">
-						<i class="fa fa-book"></i>
-						<a href="https://github.com/Thecarisma"><span style="margin-left:5px;">repo-page-scripts</span></a>
-						<p>
-						Create your repository and organization web page using a single script. Just drop and deploy.
-						</p>
-						<i class="fa fa-circle"></i> 1
-						<stat> <i class="fa fa-star"></i> 1</stat>
-						<stat> <i class="fa fa-code-fork"></i> 1</stat>
 					</div>
 				</div>
 			</div>
