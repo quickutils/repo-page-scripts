@@ -314,7 +314,7 @@ pre {
 
 .left-sidenav-a {
 	cursor: hand !important;
-	color: inherit !important;
+	color: black !important;
 }
 
 .left-sidenav-a:hover {
