@@ -39,7 +39,7 @@ function main() {
 		PageType = 2;
 		name = splited[1];
 	}
-	branch = new URL(url_string).searchParams.get("branch") || "master";
+	branch = new URL(url).searchParams.get("branch") || "master";
 	if (PageType === 1) {
 		//org and profile
 		getOrganizationProfileInfo('https://api.github.com/users/' + name, name);
